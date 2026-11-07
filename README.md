@@ -14,6 +14,14 @@ Mobile-first, read-only game mechanics reference hosted on GitHub Pages.
 - Dedicated [Sources & credits](https://mechanics-lib.bongames.org/sources/) and [Contributors](https://mechanics-lib.bongames.org/contributors/) pages.
 - 20 categories with a curated starter index. Definitions and examples are mostly not yet researched; the site labels missing definitions explicitly.
 
+## UX refresh (proposed)
+- Horizontal quick category filters for faster discovery.
+- Grid/list layout toggle, shareable with the `view=list` URL parameter.
+- Search field shortcut (`/`) and clear action (`Escape` while focused, or the clear button).
+- Responsive refinements for category navigation, search, and results.
+
+The Canva V4 design reference is [Mechanics Library website V4](https://www.canva.com/design/DAHaPa85kbA/1Lia9vLNn4WRz-5GsLxnDw/edit). Its full visual layout was not machine-readable through the connected Canva API, so this PR is a functional UX iteration rather than an exact visual implementation. Before merging, compare the actual design in a browser and manually verify search, layout toggle, and mobile navigation.
+
 ## Data and editing
 The public site has **no database and no browser editing/import controls**. The published starter data is stored in [data/mechanics.txt](data/mechanics.txt), formatted as:
 
