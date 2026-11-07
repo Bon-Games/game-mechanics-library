@@ -1,0 +1,80 @@
+Movement & Traversal|Basic Movement|Walking,Running,Sprinting,Crouch Walking,Strafing,Backward Movement,Grid Movement,Point-and-Click Movement,Click-to-Move,Path Following
+Movement & Traversal|Jumping & Aerial|Jumping,Double Jump,Triple Jump,Wall Jump,Wall Run,Air Dash,Hovering,Gliding,Flying,Jetpack,Rocket Jump,Bounce Jump,Pogo Jump
+Movement & Traversal|Advanced Traversal|Dashing,Sliding,Rolling,Climbing,Mantling,Vaulting,Ledge Grabbing,Grappling Hook,Rope Swinging,Swimming,Diving,Burrowing,Teleportation,Blink,Zipline
+Movement & Traversal|Momentum & Vehicles|Momentum Preservation,Acceleration,Air Control,Bunny Hopping,Drift,Wall Riding,Parkour Chaining,Vehicle Driving,Vehicle Flying,Boost,Vehicle Stunts
+Combat & Damage|Attacks|Melee Attack,Ranged Attack,Light Attack,Heavy Attack,Charged Attack,Combo Attack,Area Attack,Projectile Attack,Homing Projectile,Chain Attack,Splash Damage,Damage over Time
+Combat & Damage|Defense|Blocking,Parrying,Perfect Parry,Dodge Roll,I-Frames,Counterattack,Guard Break,Shielding,Cover System,Deflection,Reflect Projectile,Armor Break
+Combat & Damage|Damage Resolution|Hit Points,Hitbox/Hurtbox Collision,Critical Hit,Weak Point,Headshot,Armor Penetration,Damage Types,Elemental Resistance,Damage Falloff,Friendly Fire,Knockback,Stagger,Poise
+Combat & Damage|Combat Flow|Target Lock-On,Aim Assist,Manual Aiming,Reloading,Ammo Management,Weapon Switching,Dual Wielding,Weapon Durability,Execution,Finisher,Boss Phases,Combo Meter,Suppression Fire
+Abilities & Status Effects|Ability Activation|Active Ability,Passive Ability,Toggle Ability,Charged Ability,Channeling,Cast Time,Cooldown,Global Cooldown,Ability Charges,Ability Combo,Ability Cancel
+Abilities & Status Effects|Ability Mechanics|Area of Effect,Skillshot,Summoning,Transformation,Telekinesis,Life Steal,Healing,Regeneration,Resurrection,Absorption,Shield Generation,Ability Copy,Ability Steal
+Abilities & Status Effects|Buffs & Debuffs|Attack Buff,Defense Buff,Speed Buff,Damage Amplification,Slow,Stun,Root,Silence,Blind,Fear,Charm,Confusion,Sleep,Taunt,Vulnerability
+Abilities & Status Effects|Status Interactions|Poison,Burn,Bleed,Freeze,Shock,Petrification,Curse,Disease,Status Stacking,Status Cleansing,Status Immunity,Status Resistance,Elemental Reactions
+Stealth & Detection|Concealment|Crouch Stealth,Cover Hiding,Shadow Hiding,Camouflage,Invisibility,Disguise,Crowd Blending,Object Hiding,Body Hiding
+Stealth & Detection|Detection|Vision Cone,Line of Sight,Sound Detection,Footstep Noise,Detection Meter,Alert States,Suspicion System,Search Patterns,Last Known Position,Light Exposure
+Stealth & Detection|Infiltration & Evasion|Distracting Enemies,Luring,Silent Takedown,Pickpocketing,Lockpicking,Hacking,Sabotage,Alarm Disable,Escape Pursuit,Witness Elimination,Social Stealth
+Exploration & World Interaction|World Navigation|Fog of War,Map Reveal,Compass Navigation,Waypoints,Landmarks,Fast Travel,Portals,Secret Passages,Hidden Areas,Nonlinear Exploration,Ability-Gated Exploration
+Exploration & World Interaction|Environmental Interaction|Interactable Objects,Push/Pull Objects,Breakable Objects,Destructible Cover,Doors and Keys,Switches,Levers,Pressure Plates,Elevators,Traps,Environmental Hazards
+Exploration & World Interaction|Discovery & Investigation|Treasure Hunting,Collectible Hunting,Scanning,Tracking,Following Clues,Environmental Storytelling,Secret Detection,Mapping,Archaeology,Photo Discovery
+Exploration & World Interaction|World Dynamics|Day-Night Cycle,Weather Changes,Seasons,Dynamic Events,Environmental State Changes,World Persistence,Procedural World Generation
+Physics & Simulation|Rigid Body & Forces|Rigid Body Physics,Gravity,Variable Gravity,Gravity Manipulation,Buoyancy,Friction,Collision Response,Impulse,Ragdoll Physics,Rope Physics,Spring Physics
+Physics & Simulation|Material & World Simulation|Soft Body,Cloth Physics,Fluid Simulation,Destruction Physics,Fire Propagation,Water Flow,Electrical Conduction,Heat Transfer,Wind Forces,Terrain Deformation
+Physics & Simulation|Interactive Simulation|Physics Sandbox,Object Stacking,Weight-Based Interactions,Balance,Lever Physics,Magnetism,Chain Reactions,Environmental Combos,Ballistics,Projectile Trajectory
+Puzzle & Problem Solving|Logic & Deduction|Logic Puzzle,Deduction,Elimination,Truth/Lie Puzzle,Sequence Solving,Number Puzzle,Sudoku,Code Breaking,Cipher Solving,Constraint Satisfaction
+Puzzle & Problem Solving|Spatial & Environmental|Maze Solving,Block Pushing,Sokoban,Rotation Puzzle,Sliding Puzzle,Path Connection,Mirror Reflection,Laser Routing,Light/Shadow Puzzle,Physics Puzzle
+Puzzle & Problem Solving|Pattern & Matching|Pattern Recognition,Pattern Building,Tile Matching,Match-3,Match-2,Color Matching,Shape Matching,Memory Matching,Sequence Reproduction,Word Puzzle
+Puzzle & Problem Solving|Construction & Timing|Assembly Puzzle,Circuit Building,Pipe Connecting,Jigsaw,Timing Puzzle,Rhythm Puzzle,Multi-Step Mechanism,Cooperative Puzzle,Inventory Puzzle
+Resources & Inventory|Resource Acquisition|Resource Gathering,Mining,Harvesting,Looting,Scavenging,Resource Extraction,Passive Generation,Resource Drops,Resource Farming
+Resources & Inventory|Resource Management|Resource Allocation,Resource Conversion,Resource Consumption,Resource Regeneration,Resource Decay,Resource Cap,Resource Upkeep,Resource Scarcity,Shared Resource Pool
+Resources & Inventory|Inventory|Inventory Slots,Weight Limit,Grid Inventory,Inventory Stacking,Item Sorting,Item Splitting,Equipment Slots,Item Durability,Item Rarity,Item Binding
+Resources & Inventory|Resource Exchange|Resource Trading,Resource Transfer,Storage Management,Resource Banking,Resource Sinks,Resource Recycling,Inventory Loss on Death
+Economy & Trading|Currency|Soft Currency,Premium Currency,Multiple Currencies,Currency Conversion,Currency Sinks,Currency Faucets,Inflation Mechanics
+Economy & Trading|Markets & Pricing|NPC Shops,Player Trading,Auction House,Dynamic Pricing,Supply and Demand,Bartering,Bidding,Price Negotiation,Limited-Time Discounts
+Economy & Trading|Ownership & Income|Passive Income,Rent,Taxes,Interest,Debt,Investment,Profit Margin,Property Ownership,Market Manipulation,Commodity Trading
+Economy & Trading|Commerce Loops|Buy Low Sell High,Arbitrage,Buyback,Vendor Restock,Scarcity Pricing,Crafting for Profit,Trade Routes,Delivery Contracts
+Crafting, Building & Automation|Crafting|Recipe Crafting,Discovery Crafting,Freeform Crafting,Material Combination,Item Upgrading,Item Enhancement,Item Fusion,Salvaging,Dismantling,Equipment Repair
+Crafting, Building & Automation|Construction|Base Building,City Building,Structure Placement,Grid Building,Freeform Building,Modular Building,Blueprint Placement,Terrain Editing,Building Upgrades,Structural Integrity
+Crafting, Building & Automation|Production|Farming Production Chains,Manufacturing,Refining,Assembly Lines,Production Queues,Input-Output Processing,Recipe Optimization
+Crafting, Building & Automation|Automation|Conveyor Belts,Automated Harvesting,Automated Crafting,Robot Workers,Logistic Networks,Power Networks,Resource Routing,Factory Automation,Programmable Logic,Workflow Automation
+Progression & Customization|Character Growth|Experience Points,Leveling,Skill Points,Skill Trees,Talent Trees,Attribute Allocation,Class Specialization,Multiclassing,Prestige Levels,Stat Scaling
+Progression & Customization|Equipment & Builds|Gear Progression,Loot Tiers,Equipment Sets,Set Bonuses,Affixes,Enchanting,Gear Rerolling,Loadouts,Build Synergy,Transmogrification
+Progression & Customization|Unlock Systems|Ability Unlocking,Tech Trees,Weapon Unlocking,Character Unlocking,Region Unlocking,Milestone Unlocking,Mastery Progression
+Progression & Customization|Long-Term Progression|Account Level,Meta-Progression,Roguelite Upgrades,New Game Plus,Legacy Progression,Reputation Levels,Battle Pass Progression,Collection Completion
+Survival & Life Simulation|Survival Needs|Hunger,Thirst,Stamina,Fatigue,Oxygen,Temperature,Sanity,Radiation,Infection,Hydration,Body Heat
+Survival & Life Simulation|Survival Consequences|Permadeath,Death Penalty,Injury,Limb Damage,Bleeding,Starvation,Dehydration,Exposure,Equipment Wear
+Survival & Life Simulation|Recovery & Sustain|Resting,Sleeping,Cooking,Eating,Drinking,Shelter Building,Medical Treatment,Resource Conservation
+Survival & Life Simulation|Living Systems|Crop Growth,Animal Husbandry,Breeding,Fishing,Hunting,Ecosystem Simulation,Pet Care,Hygiene,Mood Management,Relationship Needs
+Strategy, Tactics & Territory|Positioning|Grid Tactics,Hex Movement,Flanking,Cover Positioning,Elevation Advantage,Zone of Control,Choke Points,Formation Movement
+Strategy, Tactics & Territory|Unit Command|Unit Selection,Group Commands,Unit Production,Unit Upgrades,Unit Recruitment,Squad Management,Auto-Battle,Unit Synergy,Formation Bonuses
+Strategy, Tactics & Territory|Territory & Expansion|Area Control,Area Majority,Territory Capture,Expansion,Border Control,Conquest,Influence Spread,Supply Lines,Territory Defense
+Strategy, Tactics & Territory|Strategic Planning|Technology Research,Scouting,Diplomacy,Alliances,Espionage,Resource Denial,Counter-Unit Systems,Attrition,Reinforcement,Logistics
+Time, Turns & Action Systems|Turn Structure|Turn-Based Play,Simultaneous Turns,Alternating Turns,Initiative Order,Turn Priority,Turn Skipping,Turn Reversal,Extra Turns
+Time, Turns & Action Systems|Action Economy|Action Points,Action Selection,Action Drafting,Action Queue,Action Programming,Action Cost,Action Banking,Limited Actions,Action Recovery
+Time, Turns & Action Systems|Time Manipulation|Time Limit,Countdown Timer,Time Dilation,Bullet Time,Time Freeze,Time Rewind,Time Loop,Time Acceleration
+Time, Turns & Action Systems|Real-Time Systems|Real-Time Play,Real-Time with Pause,Cooldown Timing,Timed Inputs,Quick Time Events,Reaction Windows,Beat Synchronization,Rhythm Timing
+Randomness, Risk & Probability|Random Generation|Random Number Generation,Dice Rolls,Card Shuffling,Random Loot,Random Encounters,Random Events,Procedural Maps,Random Attributes
+Randomness, Risk & Probability|Probability Control|Weighted Probability,Pity System,Reroll,Luck Modifier,Critical Chance,Guaranteed Outcomes,Probability Reveal,Random Seed
+Randomness, Risk & Probability|Risk Decisions|Push Your Luck,Risk-Reward Choices,Wagering,Betting,Double-or-Nothing,High-Risk High-Reward,Resource Gambling,Optional Challenges
+Randomness, Risk & Probability|Outcome Resolution|Skill Checks,Saving Throws,Success Threshold,Degrees of Success,Partial Success,Critical Success,Critical Failure,Contested Rolls
+Cards, Dice & Board Mechanics|Card Management|Hand Management,Deck Building,Deck Construction,Card Drawing,Card Discarding,Card Cycling,Card Exhaustion,Card Upgrading,Multi-Use Cards
+Cards, Dice & Board Mechanics|Draft & Collections|Open Drafting,Closed Drafting,Card Drafting,Bag Building,Pool Building,Set Collection,Tableau Building,Engine Building,Combo Building
+Cards, Dice & Board Mechanics|Board Placement|Worker Placement,Tile Placement,Tile Laying,Area Movement,Pattern Movement,Modular Board,Route Building,Network Building,Mancala
+Cards, Dice & Board Mechanics|Dice & Resolution|Dice Rolling,Dice Drafting,Dice Placement,Dice Manipulation,Roll-and-Write,Roll-and-Move,Dice Pool,Exploding Dice
+Cards, Dice & Board Mechanics|Tabletop Competition|Trick Taking,Auction,Bluffing,Hidden Roles,Social Deduction,Voting,Negotiation,Player Elimination,Take That
+Narrative, Dialogue & Social|Narrative Structure|Linear Narrative,Branching Narrative,Emergent Narrative,Multiple Endings,Dynamic Story Events,Narrative Time Loops
+Narrative, Dialogue & Social|Dialogue & Choice|Dialogue Trees,Dialogue Choices,Skill-Based Dialogue,Timed Dialogue,Persuasion Checks,Moral Choices,Consequence Tracking,Choice Memory
+Narrative, Dialogue & Social|NPC Relationships|Reputation,Faction Reputation,Affinity,Friendship,Romance,Trust,Loyalty,Rivalry,Companion Approval,Relationship Decay
+Narrative, Dialogue & Social|Social Simulation|NPC Schedules,NPC Memory,Procedural Relationships,Social Hierarchy,Gift Giving,Social Influence,Nemesis System
+Multiplayer & Cooperation|Competition|Player vs Player,Team PvP,Free-for-All,Ranked Match,Tournament,Capture the Flag,King of the Hill,Territorial PvP
+Multiplayer & Cooperation|Cooperation|Cooperative Play,Shared Objectives,Cooperative Abilities,Shared Resources,Revive Teammate,Team Synergy,Asymmetric Cooperation,One Versus Many
+Multiplayer & Cooperation|Social Communication|Text Chat,Voice Chat,Ping System,Emotes,Gestures,Trading,Player Gifting,Guilds,Parties
+Multiplayer & Cooperation|Session & Competitive Rules|Matchmaking,Lobby System,Team Balancing,Drop-In/Drop-Out,Spectator Mode,Respawning,Shared Progression
+Objectives, Rewards & Meta|Objectives|Quests,Main Missions,Side Quests,Daily Quests,Weekly Quests,Challenges,Contracts,Achievements,Hidden Objectives,Optional Objectives
+Objectives, Rewards & Meta|Victory & Failure|Victory Points,Score Attack,High Score,Survival Waves,Objective Completion,Time Attack,Race to Finish,Sudden Death,Checkpoints,Game Over
+Objectives, Rewards & Meta|Rewards|Loot Drops,Reward Chests,Random Rewards,Guaranteed Rewards,Milestone Rewards,Login Rewards,Streak Rewards,First-Clear Rewards,Reward Multipliers
+Objectives, Rewards & Meta|Meta Progression & LiveOps|Daily Login,Daily Reset,Battle Pass,Season Pass,Time-Limited Events,Event Missions,Gacha,Collection Albums,Prestige,Leaderboards
+Objectives, Rewards & Meta|Difficulty & Modes|Difficulty Scaling,Dynamic Difficulty Adjustment,Adaptive Enemy Spawns,Endless Mode,Hardcore Mode,Challenge Mode,Sandbox Mode,Ironman Mode
+Interface, Feedback & Player Control|Input & Interaction|Direct Control,Indirect Control,Contextual Action,Hold to Interact,Tap Timing,Swipe Gestures,Drag-and-Drop,Multi-Touch,Motion Controls,Gesture Recognition
+Interface, Feedback & Player Control|Camera & Perception|First-Person Camera,Third-Person Camera,Isometric Camera,Fixed Camera,Free Camera,Camera Lock-On,Dynamic Camera,Camera Shake,Camera Zoom
+Interface, Feedback & Player Control|Information & HUD|Health Bars,Minimap,Compass,Damage Numbers,Threat Indicators,Enemy Telegraphs,Cooldown Indicators,Objective Markers,Resource Indicators,Prediction Preview
+Interface, Feedback & Player Control|Feedback|Hit Confirmation,Hit Stop,Screen Flash,Haptic Feedback,Controller Vibration,Audio Cues,Visual Cues,Directional Damage Indicators,Combo Feedback,Perfect Timing Feedback
