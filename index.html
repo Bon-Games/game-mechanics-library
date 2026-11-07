@@ -1,80 +1,27 @@
 <!doctype html>
-<html lang="vi">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="theme-color" content="#0e1626">
-  <meta name="description" content="Game Mechanics Library — searchable taxonomy, personal research notes and source attribution.">
-  <title>Game Mechanics Library · Bon Games</title>
-  <link rel="stylesheet" href="./styles.css">
-  <script src="./app.js" defer></script>
-</head>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#0c1422"><meta name="description" content="Explore game mechanics by category, search, and source."><title>Game Mechanics Library · Bon Games</title><link rel="stylesheet" href="./styles.css"><script src="./app.js" defer></script></head>
 <body>
-  <div class="layout">
-    <aside class="sidebar">
-      <a class="brand" href="./"><span class="brand-mark">✳</span><span>GAME MECHANICS <strong>LIBRARY</strong><small>Bon Games · Research Atlas</small></span></a>
-      <div class="section-caption">CATEGORY DIRECTORY</div>
-      <nav id="category-nav" aria-label="Categories"></nav>
-      <a class="sidebar-link" href="https://github.com/Bon-Games/game-mechanics-library/blob/master/SOURCES.md" target="_blank" rel="noopener">↗ Source credits & licences</a>
-      <small class="sidebar-foot">GitHub Pages · Static & free<br>Research changes save in this browser</small>
-    </aside>
-    <main class="main">
-      <header class="topbar"><span>GROWTH IN GAME DEVELOPMENT <i>/</i> KNOWLEDGE BASE</span><a href="https://github.com/Bon-Games/game-mechanics-library" target="_blank" rel="noopener">GitHub repository ↗</a></header>
-      <div class="content">
-        <div class="eyebrow">✦ GAME DESIGN REFERENCE</div>
-        <h1>Explore <em>Game Mechanics.</em></h1>
-        <p class="lead">A practical dictionary of game mechanics, organized into 20 categories. Search, classify, cite sources and grow your research notes.</p>
-        <div class="stats">
-          <div><b id="total-stat">—</b><span>MECHANICS</span></div>
-          <div><b id="category-stat">20</b><span>CATEGORIES</span></div>
-          <div><b id="review-stat">—</b><span>RESEARCHED</span></div>
-          <div><b id="source-stat">—</b><span>SOURCES IN REGISTRY</span></div>
-        </div>
-        <section class="workspace">
-          <div class="workspace-title"><div><h2>Mechanics directory</h2><p id="summary">Loading library...</p></div><div class="toolbar"><button id="export-btn">↓ Export JSON</button><button id="import-btn">↑ Import CSV / JSON</button><button class="primary" id="new-btn">+ New mechanic</button></div></div>
-          <div class="filters">
-            <input id="search" type="search" placeholder="Search mechanic, description, alias, game, tag…">
-            <select id="status-filter" aria-label="Status"><option value="">All statuses</option><option value="unreviewed">Unreviewed</option><option value="reviewing">Reviewing</option><option value="researched">Researched</option></select>
-            <select id="source-filter" aria-label="Source"><option value="">All sources</option></select>
-            <select id="tag-filter" aria-label="Tag"><option value="">All tags</option></select>
-            <label class="favorite-toggle"><input id="favorite-only" type="checkbox"> ★ Favorites</label>
-          </div>
-          <div class="filtered-title"><strong id="active-category">All categories</strong><span id="filtered-count"></span><button id="reset-btn" class="link-btn">Reset filters ↺</button></div>
-          <div class="grid" id="cards"></div>
-          <div class="pagination"><button id="more-btn">Load more ↓</button></div>
-        </section>
-        <section class="credits">
-          <div><h2>Sources & attribution</h2><p>This project distinguishes <strong>source references</strong> from datasets actually imported. Every mechanic can carry multiple cited sources; merging duplicates keeps those references.</p></div>
-          <div id="credits-list"></div>
-          <p class="fineprint"><strong>Data ownership:</strong> notes and edits stay in your browser until you export JSON. To publish changes, upload the exported data to this repository. Always review licences before republishing any third-party definitions.</p>
-        </section>
-      </div>
-    </main>
-  </div>
-  <dialog id="edit-dialog"><form id="edit-form"><div class="dialog-head"><div><small>MECHANIC RECORD</small><h2 id="dialog-title">Edit mechanic</h2></div><button type="button" class="close-dialog" aria-label="Close">×</button></div>
-    <div class="dialog-body">
-      <input id="edit-id" type="hidden">
-      <label>Name <input id="edit-name" required maxlength="160" placeholder="Perfect Parry"></label>
-      <div class="two"><label>Category <select id="edit-category"></select></label><label>Subcategory <input id="edit-subcategory"></label></div>
-      <div class="two"><label>Research status <select id="edit-status"><option value="unreviewed">Unreviewed</option><option value="reviewing">Reviewing</option><option value="researched">Researched</option></select></label><label>Type <select id="edit-type"><option value="unknown">Not classified</option><option value="atomic">Atomic</option><option value="variant">Variant</option><option value="composite">Composite</option></select></label></div>
-      <label>Definition / explanation <textarea id="edit-description" rows="3" placeholder="What is this mechanic?"></textarea></label>
-      <label>Tags (comma-separated) <input id="edit-tags" placeholder="Timing, Defensive"></label>
-      <label>Aliases (comma-separated) <input id="edit-aliases" placeholder="Perfect Block"></label>
-      <label>Example games (comma-separated) <input id="edit-examples" placeholder="Sekiro, Lies of P"></label>
-      <label>Research summary <textarea id="edit-notes" rows="3"></textarea></label>
-      <label><input id="edit-favorite" type="checkbox"> Favorite</label>
-      <div class="source-editor"><h3>Credits & provenance</h3><p>Existing sources are retained when updating or merging a mechanic. Add more references below.</p><div id="edit-sources-list"></div><div class="two"><label>New cited source <select id="edit-source-select"><option value="">No new source</option></select></label><label>Specific page URL <input id="edit-source-url" type="url" placeholder="https://example.com/mechanic"></label></div></div>
-      <div class="source-editor"><h3>Research log</h3><div id="research-log"></div><label>Add research note (timestamped) <textarea id="new-log" rows="2"></textarea></label></div>
-    </div>
-    <div class="dialog-actions"><button class="close-dialog" type="button">Cancel</button><button class="primary" type="submit">Save mechanic</button></div>
-  </form></dialog>
-  <dialog id="import-dialog"><div class="dialog-head"><div><small>DATA INTEGRATION</small><h2>Import mechanics</h2></div><button class="close-import" type="button">×</button></div><div class="dialog-body"><p>CSV columns: <code>name,category,subcategory,description,tags,aliases,examples,source_url</code>. JSON accepts an array or an object with <code>mechanics</code> and optionally <code>sources</code>. Merged entries keep all credit links.</p>
-    <label>File <input type="file" id="file-input" accept=".csv,.json,text/csv,application/json"></label>
-    <div class="two"><label>Dataset / source name <input id="import-source-name" placeholder="Author or website"></label><label>Source URL <input type="url" id="import-source-url" placeholder="https://"></label></div>
-    <label>Licence / terms <input id="import-source-license" placeholder="e.g. CC BY 4.0 (verify before publishing)"></label>
-    <div id="import-status" aria-live="polite"></div>
-    <div class="dialog-actions"><button class="close-import" type="button">Cancel</button><button id="do-import" class="primary" type="button">Import & preserve credits</button></div>
-  </div></dialog>
-  <div id="toast" role="status"></div>
-</body>
-</html>
+<header class="mobile-header"><button id="menu-open" class="icon-button" aria-label="Open categories" aria-controls="sidebar" aria-expanded="false">☰</button><a class="mobile-brand" href="./">✳ Mechanics Library</a><a class="header-github" href="https://github.com/Bon-Games/game-mechanics-library" aria-label="GitHub repository">↗</a></header>
+<div id="drawer-shade" class="drawer-shade" hidden></div>
+<div class="layout">
+<aside id="sidebar" class="sidebar" aria-label="Category navigation">
+<div class="sidebar-heading"><a class="brand" href="./"><span class="brand-mark">✳</span><span>GAME MECHANICS<strong>LIBRARY</strong><small>Bon Games · Research Atlas</small></span></a><button id="menu-close" class="icon-button close-menu" aria-label="Close categories">×</button></div>
+<p class="section-caption">EXPLORE CATEGORIES</p><nav id="category-nav" aria-label="Categories"></nav>
+<div class="sidebar-footer"><a href="./sources/">Sources & credits ↗</a><a href="./contributors/">Contributors ↗</a></div>
+</aside>
+<main class="main"><div class="content">
+<div class="eyebrow">✦ GAME DESIGN REFERENCE</div><h1>Explore <em>Game Mechanics.</em></h1>
+<p class="lead">A searchable game-design index organized into 20 categories. Browse mechanics, explore subcategories, and follow credited sources.</p>
+<div class="stats"><div><b id="total-stat">—</b><span>MECHANICS</span></div><div><b id="category-stat">20</b><span>CATEGORIES</span></div><div><b id="source-stat">—</b><span>REGISTERED SOURCES</span></div></div>
+<section class="workspace" aria-label="Mechanics directory"><div class="section-head"><div><h2>Mechanics directory</h2><p id="summary">Loading library…</p></div><span class="read-only">PUBLIC REFERENCE</span></div>
+<div class="search-wrap"><span aria-hidden="true">⌕</span><input id="search" type="search" placeholder="Search mechanics, categories, aliases…" aria-label="Search mechanics"></div>
+<div class="filter-bar"><button id="filters-toggle" class="filter-toggle" aria-controls="filter-panel" aria-expanded="false">☷ Filters <span id="filter-count"></span></button><button id="category-toggle" class="filter-toggle mobile-category" aria-controls="sidebar">☰ Categories</button><span id="filtered-count" class="result-count"></span></div>
+<div id="filter-panel" class="filter-panel" hidden><label>Subcategory<select id="subcategory-filter"><option value="">All subcategories</option></select></label><label>Source<select id="source-filter"><option value="">All sources</option></select></label><label>Sort by<select id="sort-filter"><option value="name">Name A–Z</option><option value="category">Category</option></select></label><button id="reset-btn" class="reset-btn">Clear filters</button></div>
+<div class="listing-head"><h3 id="active-category">All categories</h3><span id="page-summary"></span></div>
+<div class="grid" id="cards" aria-live="polite"></div>
+<nav id="pagination" class="pagination" aria-label="Mechanics pages"></nav>
+</section>
+<footer class="site-footer"><span>© Bon Games · Game Mechanics Library</span><span><a href="./sources/">Sources & credits</a> · <a href="./contributors/">Contributors</a> · <a href="https://github.com/Bon-Games/game-mechanics-library">GitHub</a></span></footer>
+</div></main></div>
+<dialog id="detail-dialog"><div class="dialog-head"><div><small>MECHANIC DETAILS</small><h2 id="detail-title"></h2></div><button id="detail-close" class="icon-button" aria-label="Close">×</button></div><div id="detail-content" class="dialog-body"></div></dialog>
+</body></html>
