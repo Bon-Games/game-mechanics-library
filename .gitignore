@@ -3,14 +3,11 @@ web/dist/
 web/.astro/
 web/test-results/
 web/playwright-report/
-web/.taste-skill/
 web/release-evidence/
 web/release-artifact.json
 web/audit-report.json
-artifacts/
 .env
 .env.*
 !.env.example
-web/test-results-*/
 docs/
 AGENTS.md

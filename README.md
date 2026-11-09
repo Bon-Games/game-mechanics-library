@@ -29,8 +29,8 @@ npm run verify:release
 ```
 
 Install the test browser once with `npx playwright install chromium`. An installed
-Chrome can be selected with `PLAYWRIGHT_CHANNEL=chrome`; see the development guide
-for Windows environment syntax and the required Node runtime.
+Chrome can be selected with `PLAYWRIGHT_CHANNEL=chrome` (PowerShell:
+`$env:PLAYWRIGHT_CHANNEL = "chrome"`).
 
 Author mechanic Markdown in `web/src/content/mechanics/<immutable-id>.md`.
 Taxonomy and source registries live beside it. Validation checks identity,
@@ -38,20 +38,12 @@ classification, citations, safe links, research status, and publication rules.
 Drafts are excluded from the public artifact and search. Do not invent missing
 definitions, examples, tags, relationships, or provenance.
 
-- [Development and authoring](docs/development/guidelines.md)
-- [Content contracts](docs/architecture/data-model.md)
-- [Architecture](docs/architecture/overview.md) and [requirements](docs/requirements/prd.md)
-- [Migration plan](docs/plan/architecture-migration.md) and [design](docs/plan/website-design.md)
-- [Implementation evidence](docs/development/implementation-evidence.md)
-- [Release and rollback](docs/development/release.md)
-- [Source reuse policy](SOURCES.md)
+See the [source reuse policy](SOURCES.md) before adding provenance.
 
 Only verified `web/dist/` is deployable. Pull requests and master pushes validate;
 publishing requires the manual Pages workflow on `master` with `publish` selected.
 The production domain remains <https://mechanics-lib.bongames.org/>. Project-subpath
 hosting is also covered by release verification.
 
-The original root `index.html`, `app.js`, styles, and `data/` remain as a legacy
-rollback source. They are not included in the new artifact. The baseline data is
-also frozen under `web/tests/fixtures/legacy/`. No legacy file was retired during
-this migration.
+The original data is frozen under `web/tests/fixtures/legacy/` as the migration
+baseline. The previous static site remains available in Git history at `f2ce28d`.

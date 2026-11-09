@@ -1,6 +1,6 @@
 # Sources, attribution and reuse policy
 
-The project maintains a source registry in [`data/sources.json`](data/sources.json). **Listing a website here does not mean its content has been imported.**
+The project maintains a source registry in [`web/src/content/sources/`](web/src/content/sources/). **Listing a website here does not mean its content has been imported.**
 
 ## Sources consulted
 
@@ -15,26 +15,25 @@ The project maintains a source registry in [`data/sources.json`](data/sources.js
 
 ## Record-level attribution
 
-Every imported or researched mechanic should keep **provenance**, not just a global bibliography. Suggested metadata:
+Every imported or researched mechanic keeps **provenance** as citation snapshots in its own frontmatter, not just a global bibliography. Example:
 
 ```json
-{
-  "name": "Perfect Parry",
-  "sources": [
-    {
-      "source_id": "tallmove",
-      "url": "https://compendium.tallmove.com/",
-      "creator": "James West Jr. / Game Mechanic Compendium",
-      "license": "CC BY 4.0",
-      "accessed_at": "2026-11-07",
-      "modified": true,
-      "notes": "Adapted and reclassified in this project's taxonomy."
-    }
-  ]
-}
+"sources": [
+  {
+    "sourceId": "tallmove",
+    "url": "https://compendium.tallmove.com/",
+    "creator": "James West Jr. / Game Mechanic Compendium",
+    "license": "CC BY 4.0",
+    "attribution": "Game Mechanic Compendium, James West Jr., CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+    "accessedAt": "2026-11-07",
+    "modified": true,
+    "notes": "Adapted and reclassified in this project's taxonomy."
+  }
+]
 ```
 
-This is an **example of the schema**, not a claim that Perfect Parry was copied from this source.
+This is an **example of the schema**, not a claim that any entry was copied from this source.
 
 ## Attribution rules
 
@@ -43,10 +42,9 @@ This is an **example of the schema**, not a claim that Perfect Parry was copied 
 3. **Do not automatically assume permission** to bulk import from sites where data reuse rights have not been verified. Link to their websites as references until checked.
 4. A mechanic's name alone is commonplace terminology, but external definitions, explanations, descriptions and datasets may carry attribution obligations. Write original definitions unless reusing licensed material with attribution.
 5. If two sources describe the same mechanic, the merged entry must keep **both source references**.
-6. Users' private research notes are saved in the browser. Do not put private notes into a public repository without reviewing the export.
 
 ## Keeping credits visible
 
-The website should expose a **Sources & credits** page and clickable citations on mechanic detail cards. CSV/JSON import should capture its origin (name, URL, license and access date). JSON export must preserve this metadata.
+The website shows a **Sources & credits** page and a Sources & attribution section on every mechanic page, rendered from these snapshots.
 
 **License status warning:** Licence statements are based on the linked publishers' descriptions checked on 2026-11-07, and could change. Review original conditions for every subsequent dataset download.
