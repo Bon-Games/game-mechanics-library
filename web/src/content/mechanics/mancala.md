@@ -30,3 +30,7 @@
 ---
 
 Definition and gameplay examples are pending research. This entry preserves the original curated name and classification.
+
+## Video reference
+
+- [Mancala gameplay video (YouTube)](https://www.youtube.com/watch?v=-A-djjimCcM)
