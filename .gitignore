@@ -12,3 +12,5 @@ artifacts/
 .env.*
 !.env.example
 web/test-results-*/
+docs/
+AGENTS.md
