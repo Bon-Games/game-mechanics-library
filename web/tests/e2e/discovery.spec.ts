@@ -177,6 +177,14 @@ test("keyboard shortcut respects editable content and static pages work without 
   await context.close();
 });
 
+test("video references render as privacy-enhanced embedded players", async ({ page }) => {
+  await page.goto(new URL("mechanics/mancala/", root).href);
+  const player = page.locator(".video-embed iframe");
+  await expect(player).toHaveAttribute("src", "https://www.youtube-nocookie.com/embed/-A-djjimCcM");
+  await expect(player).toHaveAttribute("title", "How to Play Mancala");
+  await expect(page.locator(".video-embed figcaption a")).toHaveAttribute("href", "https://www.youtube.com/watch?v=-A-djjimCcM");
+});
+
 test("production body-only fixture is searchable in both label languages with all filters", async ({ page }) => {
   test.skip(process.env.RELEASE_FIXTURES !== "1", "Requires an isolated build with release fixtures.");
   await openLibrary(page, "?q=quasarclockworkfixture&tag=release-fixture-tag&source=curated-starter");

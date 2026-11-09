@@ -4,6 +4,7 @@ import SiteLayout from "../../layouts/SiteLayout.astro";
 import { loadLibrary } from "../../lib/library";
 import { withBase } from "../../domain/urls";
 import { rankCards } from "../../domain/browse";
+import { youtubeVideoId } from "../../domain/schema";
 export async function getStaticPaths() {
   const library = await loadLibrary();
   const nameRanks = new Map(rankCards(library.cards, "name").map((card, index) => [card.id, index]));
@@ -29,6 +30,10 @@ const related = cards.filter((card) => mechanic.relatedIds.includes(card.id));
     <span hidden data-pagefind-sort="name_rank">{nameRank}</span><span hidden data-pagefind-sort="category_rank">{categoryRank}</span>
     {mechanic.maturity === "starter" ? <aside class="starter-notice" data-pagefind-ignore data-static-i18n="starterNotice">Starter entry. This mechanic has not been researched.</aside> : <p class="research-status" data-pagefind-ignore data-static-i18n="reviewed">Reviewed entry</p>}
     <div class="prose reading-body"><p class="lead">{mechanic.summary}</p><Content /></div>
+    {mechanic.videos && mechanic.videos.length > 0 && <section class="detail-section" data-pagefind-ignore><h2 data-static-i18n="videos">Videos</h2>{mechanic.videos.map((video) => <figure class="video-embed">
+      <iframe class="video-frame" src={"https://www.youtube-nocookie.com/embed/" + youtubeVideoId(video.url)} title={video.title} loading="lazy" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      <figcaption><a href={video.url} rel="noopener noreferrer">{video.title}</a> <span>{video.creator}</span></figcaption>
+    </figure>)}</section>}
     {mechanic.aliases.length > 0 && <section class="detail-section"><h2 data-static-i18n="aliases">Also known as</h2><ul class="plain-list">{mechanic.aliases.map((alias) => <li>{alias}</li>)}</ul></section>}
     {mechanic.tags.length > 0 && <section class="detail-section"><h2 data-static-i18n="tags">Tags</h2><ul class="inline-list">{mechanic.tags.map((tag) => <li data-pagefind-filter={"tag:" + tag}>{taxonomy.tags.find((item) => item.id === tag)?.title || tag}</li>)}</ul></section>}
     {mechanic.genres.length > 0 && <section class="detail-section"><h2 data-static-i18n="genres">Genres</h2><ul class="inline-list">{mechanic.genres.map((genre) => <li>{taxonomy.genres.find((item) => item.id === genre)?.title || genre}</li>)}</ul></section>}

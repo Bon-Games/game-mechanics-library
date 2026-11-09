@@ -70,6 +70,17 @@ test("invalid scalar values, missing fields, unknown keys and unsafe URLs fail",
   assert.equal(mechanicSchema.safeParse({ ...sample, sources: [partialCitation] }).success, false);
 });
 
+test("videos accept only YouTube watch and short links", () => {
+  const video = { title: "Demo", creator: "Channel" };
+  for (const url of ["https://www.youtube.com/watch?v=-A-djjimCcM", "https://youtu.be/-A-djjimCcM"]) {
+    assert.equal(mechanicSchema.safeParse({ ...sample, videos: [{ ...video, url }] }).success, true, url);
+  }
+  for (const url of ["https://example.org/watch?v=-A-djjimCcM", "https://www.youtube.com/watch?v=short", "https://www.youtube.com/@channel"]) {
+    assert.equal(mechanicSchema.safeParse({ ...sample, videos: [{ ...video, url }] }).success, false, url);
+  }
+  assert.equal(mechanicSchema.safeParse({ ...sample, videos: [{ ...video, url: "https://youtu.be/-A-djjimCcM", extra: 1 }] }).success, false);
+});
+
 test("invalid taxonomy, identities and relationships fail with actionable context", () => {
   assert.throws(() => validate([sample, sample]), /Duplicate mechanic ID/);
   for (const change of [{ categoryId: "missing" }, { subcategoryId: "missing" }, { tags: ["missing"] }, { genres: ["missing"] }, { relatedIds: ["missing"] }, { relatedIds: [sample.id] }, { relatedIds: [sample.id, sample.id] }, { sources: [{ ...sample.sources[0]!, sourceId: "missing" }] }]) {

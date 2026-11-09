@@ -25,6 +25,18 @@ export const citationSchema = z.strictObject({
   sourceId: idSchema, url: httpUrlSchema, creator: text, license: text, licenseUrl,
   accessedAt: date, attribution: text, modified: z.boolean(), notes: text.optional(),
 });
+export function youtubeVideoId(value: string): string | undefined {
+  try {
+    const url = new URL(value);
+    const host = url.hostname.replace(/^(?:www|m)\./, "");
+    const id = host === "youtu.be" ? url.pathname.slice(1) : host === "youtube.com" && url.pathname === "/watch" ? url.searchParams.get("v") : null;
+    return id && /^[\w-]{11}$/.test(id) ? id : undefined;
+  } catch { return undefined; }
+}
+const videoSchema = z.strictObject({
+  title: text, creator: text,
+  url: httpUrlSchema.refine((value) => youtubeVideoId(value) !== undefined, "Use a YouTube watch or youtu.be URL"),
+});
 const term = z.strictObject({ id: idSchema, title: text });
 export const categorySchema = z.strictObject({
   id: idSchema, title: text, subcategories: z.array(term).min(1),
@@ -35,6 +47,7 @@ export const mechanicSchema = z.strictObject({
   status: z.enum(["draft", "published"]), maturity: z.enum(["starter", "reviewed"]),
   language: z.literal("en"), tags: ids, genres: ids,
   aliases: z.array(text), examples: z.array(text), relatedIds: ids,
+  videos: z.array(videoSchema).optional(),
   sources: z.array(citationSchema),
 }).refine((value) => value.status === "draft" || value.sources.length > 0, "Published entries require a citation snapshot");
 
@@ -43,6 +56,7 @@ export type Category = z.infer<typeof categorySchema>;
 export type Source = z.infer<typeof sourceSchema>;
 export type Taxonomy = z.infer<typeof taxonomySchema>;
 export type Citation = z.infer<typeof citationSchema>;
+export type Video = z.infer<typeof videoSchema>;
 export type MechanicCard = Pick<Mechanic, "id" | "title" | "summary" | "categoryId" | "subcategoryId" | "maturity" | "language" | "tags" | "genres" | "aliases" | "examples"> & {
   categoryTitle: string; subcategoryTitle: string; sources: { sourceId: string }[];
 };

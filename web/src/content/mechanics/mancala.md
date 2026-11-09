@@ -13,6 +13,13 @@
   "aliases": [],
   "examples": [],
   "relatedIds": [],
+  "videos": [
+    {
+      "title": "How to Play Mancala",
+      "creator": "Artful Math",
+      "url": "https://www.youtube.com/watch?v=-A-djjimCcM"
+    }
+  ],
   "sources": [
     {
       "sourceId": "curated-starter",
@@ -30,7 +37,3 @@
 ---
 
 Definition and gameplay examples are pending research. This entry preserves the original curated name and classification.
-
-## Video reference
-
-- [Mancala gameplay video (YouTube)](https://www.youtube.com/watch?v=-A-djjimCcM)

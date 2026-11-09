@@ -37,6 +37,7 @@ export const staticLabels = {
   tags: { en: "Tags", vi: "Nh\u00e3n" },
   genres: { en: "Genres", vi: "Th\u1ec3 lo\u1ea1i" },
   examples: { en: "Example games", vi: "Tr\u00f2 ch\u01a1i v\u00ed d\u1ee5" },
+  videos: { en: "Videos", vi: "Video" },
   attribution: { en: "Sources & attribution", vi: "Ngu\u1ed3n & ghi c\u00f4ng" },
   creator: { en: "Creator", vi: "T\u00e1c gi\u1ea3" },
   license: { en: "Licence", vi: "Gi\u1ea5y ph\u00e9p" },
