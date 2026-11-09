@@ -1,0 +1,3 @@
+# Frozen migration originals are hashed byte-for-byte; never convert line endings.
+web/tests/fixtures/legacy/mechanics.txt -text
+web/tests/fixtures/legacy/sources.json -text
