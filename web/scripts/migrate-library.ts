@@ -3,10 +3,10 @@ import { existsSync, readFileSync, readdirSync, mkdirSync, writeFileSync } from 
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { parse } from "yaml";
-import type { Category, Mechanic, Source } from "../src/domain/schema";
+import { STARTER_SUMMARY, type Category, type Mechanic, type Source } from "../src/domain/schema";
 import { validateLibrary } from "../src/domain/validate";
 
-export const starterSummary = "Definition not yet researched. This entry is part of the curated starter index.";
+export const starterSummary = STARTER_SUMMARY;
 export const starterBody = "Definition and gameplay examples are pending research. This entry preserves the original curated name and classification.";
 export const asciiJson = (value: unknown, indent = 2) => JSON.stringify(value, null, indent).replace(/[\u007f-\uffff]/g, (char) => "\\u" + char.charCodeAt(0).toString(16).padStart(4, "0"));
 export const hash = (value: string | Buffer) => createHash("sha256").update(value).digest("hex");

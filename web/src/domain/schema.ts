@@ -37,6 +37,9 @@ const videoSchema = z.strictObject({
   title: text, creator: text,
   url: httpUrlSchema.refine((value) => youtubeVideoId(value) !== undefined, "Use a YouTube watch or youtu.be URL"),
 });
+// Local files only, so licence and availability stay under repository control.
+const mediaPath = z.string().regex(/^media\/mechanics\/[a-z0-9]+(?:-[a-z0-9]+)*\/[a-z0-9._-]+\.(?:avif|gif|jpe?g|png|webp)$/, "Use media/mechanics/<id>/<file> with an image extension");
+const imageSchema = z.strictObject({ src: mediaPath, alt: text, credit: text, license: text, sourceUrl: httpUrlSchema });
 const term = z.strictObject({ id: idSchema, title: text });
 export const categorySchema = z.strictObject({
   id: idSchema, title: text, subcategories: z.array(term).min(1),
@@ -48,6 +51,7 @@ export const mechanicSchema = z.strictObject({
   language: z.literal("en"), tags: ids, genres: ids,
   aliases: z.array(text), examples: z.array(text), relatedIds: ids,
   videos: z.array(videoSchema).optional(),
+  images: z.array(imageSchema).optional(),
   sources: z.array(citationSchema),
 }).refine((value) => value.status === "draft" || value.sources.length > 0, "Published entries require a citation snapshot");
 
@@ -57,6 +61,13 @@ export type Source = z.infer<typeof sourceSchema>;
 export type Taxonomy = z.infer<typeof taxonomySchema>;
 export type Citation = z.infer<typeof citationSchema>;
 export type Video = z.infer<typeof videoSchema>;
+export type Image = z.infer<typeof imageSchema>;
+export type PreviewMedia = { kind: "video"; videoId: string; title: string } | { kind: "image"; src: string; alt: string } | { kind: "none" };
 export type MechanicCard = Pick<Mechanic, "id" | "title" | "summary" | "categoryId" | "subcategoryId" | "maturity" | "language" | "tags" | "genres" | "aliases" | "examples"> & {
-  categoryTitle: string; subcategoryTitle: string; sources: { sourceId: string }[];
+  categoryTitle: string; subcategoryTitle: string; sources: { sourceId: string }[]; media: PreviewMedia;
 };
+
+export const STARTER_SUMMARY = "Definition not yet researched. This entry is part of the curated starter index.";
+export function hasOwnSummary(entry: Pick<Mechanic, "summary" | "maturity">): boolean {
+  return entry.maturity === "reviewed" || entry.summary !== STARTER_SUMMARY;
+}

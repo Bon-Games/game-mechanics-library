@@ -164,6 +164,7 @@ test("keyboard shortcut respects editable content and static pages work without 
   const noscriptNotice = staticPage.locator("noscript .starter-notice");
   await expect(noscriptNotice).toContainText("Search requires JavaScript");
   await expect(noscriptNotice.locator("a[href*='/categories/']")).toBeVisible();
+  await expect(staticPage.locator(".preview-button")).toHaveCount(0);
   await staticPage.goto(new URL("categories/", root).href);
   const categoryLink = staticPage.locator("main a[href*='/categories/']").first();
   await categoryLink.click();
@@ -183,6 +184,62 @@ test("video references render as privacy-enhanced embedded players", async ({ pa
   await expect(player).toHaveAttribute("src", "https://www.youtube-nocookie.com/embed/-A-djjimCcM");
   await expect(player).toHaveAttribute("title", "How to Play Mancala");
   await expect(page.locator(".video-embed figcaption a")).toHaveAttribute("href", "https://www.youtube.com/watch?v=-A-djjimCcM");
+});
+
+test("card preview opens a centred summary popup without changing card navigation", async ({ page }) => {
+  await openLibrary(page);
+  await search(page, "Mancala");
+  const card = cards(page).filter({ hasText: "Mancala" }).first();
+  await expect(card.locator("p")).toContainText("collect more stones");
+  const button = card.getByRole("button", { name: "Preview: Mancala" });
+  await button.click();
+  const dialog = page.locator("dialog.preview-dialog");
+  await expect(dialog).toBeVisible();
+  await expect(page).toHaveURL(/q=Mancala/);
+  await expect(dialog.locator("h2")).toHaveText("Mancala");
+  await expect(dialog.locator(".preview-classification")).toContainText("Board");
+  await expect(dialog.locator(".preview-summary")).toContainText("two-player turn-based strategy board game");
+  await expect(dialog.locator("iframe")).toHaveAttribute("src", "https://www.youtube-nocookie.com/embed/-A-djjimCcM");
+  await expect(dialog.getByRole("link", { name: "View full details" })).toHaveAttribute("href", /mechanics\/mancala\/?$/);
+  const box = (await dialog.boundingBox())!;
+  const viewport = page.viewportSize()!;
+  expect(Math.abs(box.x + box.width / 2 - viewport.width / 2)).toBeLessThan(2);
+  expect(Math.abs(box.y + box.height / 2 - viewport.height / 2)).toBeLessThan(2);
+  await page.keyboard.press("Escape");
+  await expect(dialog).toBeHidden();
+  await expect(dialog.locator("iframe")).toHaveCount(0);
+  await expect(button).toBeFocused();
+  await page.keyboard.press("Enter");
+  await expect(dialog).toBeVisible();
+  await dialog.getByRole("button", { name: "Close" }).click();
+  await expect(dialog).toBeHidden();
+  // The title link overlay covers the card, so click by position rather than on the paragraph element.
+  const summary = (await card.locator("p").boundingBox())!;
+  await page.mouse.click(summary.x + 8, summary.y + 8);
+  await expect(page).toHaveURL(/mechanics\/mancala\/?$/);
+});
+
+test("entries without media preview a placeholder in both interface languages", async ({ page }) => {
+  await openLibrary(page, "?lang=vi");
+  const card = cards(page).first();
+  await card.locator(".preview-button").click();
+  const dialog = page.locator("dialog.preview-dialog");
+  await expect(dialog.locator(".media-placeholder")).toBeVisible();
+  await expect(dialog.locator("iframe")).toHaveCount(0);
+  await expect(dialog.getByRole("link")).toHaveAttribute("href", /lang=vi/);
+  await page.mouse.click(5, 5);
+  await expect(dialog).toBeHidden();
+});
+
+test("phone preview fits the viewport without horizontal scroll", async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await openLibrary(page, "?q=Mancala");
+  await expect(page.locator("#cards")).toHaveAttribute("aria-busy", "false");
+  await cards(page).filter({ hasText: "Mancala" }).first().locator(".preview-button").click();
+  const box = (await page.locator("dialog.preview-dialog").boundingBox())!;
+  expect(box.x).toBeGreaterThanOrEqual(15);
+  expect(box.x + box.width).toBeLessThanOrEqual(375);
+  expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(390);
 });
 
 test("production body-only fixture is searchable in both label languages with all filters", async ({ page }) => {

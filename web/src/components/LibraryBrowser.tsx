@@ -5,6 +5,7 @@ import translations from "../domain/translations.json";
 import { withBase } from "../domain/urls";
 import { loadPagefind, resolvePage, searchOptions, type Pagefind } from "../lib/search";
 import MechanicCard from "./MechanicCard";
+import MechanicPreview from "./MechanicPreview";
 
 type Props = { cards: Card[]; categories: Category[]; sources: Source[]; base: string };
 type CompletedSearch = { cards: Card[]; count: number; page: number; size: number; key: string };
@@ -24,6 +25,8 @@ export default function LibraryBrowser({ cards, categories, sources, base }: Pro
   const [searchStatus, setSearchStatus] = useState<"ready" | "loading" | "error">("ready");
   const [completed, setCompleted] = useState<CompletedSearch | null>(null);
   const [retry, setRetry] = useState(0);
+  const [preview, setPreview] = useState<Card | null>(null);
+  const previewTrigger = useRef<HTMLButtonElement | null>(null);
   const searchInput = useRef<HTMLInputElement>(null);
   const resultsHeading = useRef<HTMLHeadingElement>(null);
   const focusPagination = useRef(false);
@@ -217,6 +220,14 @@ export default function LibraryBrowser({ cards, categories, sources, base }: Pro
     draftRef.current = "";
     update({ ...initialState, view: state.view, lang: state.lang });
   };
+  const openPreview = (entry: Card, trigger: HTMLButtonElement) => {
+    previewTrigger.current = trigger;
+    setPreview(entry);
+  };
+  const closePreview = () => {
+    setPreview(null);
+    previewTrigger.current?.focus();
+  };
   const goPage = (number: number) => {
     focusPagination.current = true;
     update({ page: clampPage(number, count, size) });
@@ -274,7 +285,7 @@ export default function LibraryBrowser({ cards, categories, sources, base }: Pro
       </p>
       {failed && <div className="search-recovery"><button type="button" className="toolbar-button" onClick={() => { pagefind.current = null; setSearchStatus("loading"); setRetry((value) => value + 1); }}>{labels.retry}</button><a href={categoriesHref}>{labels.seeCategories}</a></div>}
       <div id="cards" className={"mechanics-grid" + (state.view === "list" ? " list-view" : "")} aria-busy={pending} aria-describedby="search-result-context" lang="en">
-        {visible.map((entry) => <MechanicCard key={entry.id} entry={entry} base={base} missing={labels.missing} reviewed={labels.reviewed} interfaceLang={state.lang} />)}
+        {visible.map((entry) => <MechanicCard key={entry.id} entry={entry} base={base} missing={labels.missing} reviewed={labels.reviewed} interfaceLang={state.lang} previewLabel={labels.preview} onPreview={hydrated ? openPreview : undefined} />)}
       </div>
       <p id="search-result-context" className="sr-only">{(pending || failed) && visible.length ? labels.retainedResults : labels.currentResults}</p>
       {ready && !visible.length && <div className="empty-state"><p>{labels.noResults}</p><div className="empty-actions">
@@ -291,6 +302,7 @@ export default function LibraryBrowser({ cards, categories, sources, base }: Pro
         </span>)}
         <button type="button" disabled={page === pages} onClick={() => goPage(page + 1)}>{labels.next}</button>
       </nav>}
+      <MechanicPreview entry={preview} base={base} interfaceLang={state.lang} labels={labels} onClose={closePreview} />
       <div className="library-reset"><button type="button" className="text-button" onClick={reset}>{labels.resetLibrary}</button></div>
     </section>
   );

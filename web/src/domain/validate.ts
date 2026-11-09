@@ -44,6 +44,9 @@ export function validateLibrary(mechanics: Mechanic[], categories: Category[], s
       else if (!related) errors.push(entry.id + ": unknown relationship " + relatedId);
       else if (entry.status === "published" && related.status === "draft") errors.push(entry.id + ": published entry links to draft " + relatedId);
     }
+    for (const image of entry.images ?? []) {
+      if (!image.src.startsWith("media/mechanics/" + entry.id + "/")) errors.push(entry.id + ": image must live under media/mechanics/" + entry.id + "/");
+    }
     for (const reference of entry.sources) {
       const source = sourceById.get(reference.sourceId);
       if (!source) errors.push(entry.id + ": unknown source " + reference.sourceId);

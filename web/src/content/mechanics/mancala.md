@@ -2,7 +2,7 @@
 {
   "id": "mancala",
   "title": "Mancala",
-  "summary": "Definition not yet researched. This entry is part of the curated starter index.",
+  "summary": "Mancala is a classic two-player turn-based strategy board game where the goal is to collect more stones in your large store (called a Mancala) than your opponent.",
   "categoryId": "cards-dice-board-mechanics",
   "subcategoryId": "cards-dice-board-mechanics-board-placement",
   "status": "published",

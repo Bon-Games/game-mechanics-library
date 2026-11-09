@@ -34,6 +34,10 @@ const related = cards.filter((card) => mechanic.relatedIds.includes(card.id));
       <iframe class="video-frame" src={"https://www.youtube-nocookie.com/embed/" + youtubeVideoId(video.url)} title={video.title} loading="lazy" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
       <figcaption><a href={video.url} rel="noopener noreferrer">{video.title}</a> <span>{video.creator}</span></figcaption>
     </figure>)}</section>}
+    {mechanic.images && mechanic.images.length > 0 && <section class="detail-section" data-pagefind-ignore><h2 data-static-i18n="images">Images</h2>{mechanic.images.map((image) => <figure class="media-figure">
+      <img src={withBase(base, image.src)} alt={image.alt} loading="lazy" decoding="async" />
+      <figcaption><a href={image.sourceUrl} rel="noopener noreferrer">{image.credit}</a> <span>{image.license}</span></figcaption>
+    </figure>)}</section>}
     {mechanic.aliases.length > 0 && <section class="detail-section"><h2 data-static-i18n="aliases">Also known as</h2><ul class="plain-list">{mechanic.aliases.map((alias) => <li>{alias}</li>)}</ul></section>}
     {mechanic.tags.length > 0 && <section class="detail-section"><h2 data-static-i18n="tags">Tags</h2><ul class="inline-list">{mechanic.tags.map((tag) => <li data-pagefind-filter={"tag:" + tag}>{taxonomy.tags.find((item) => item.id === tag)?.title || tag}</li>)}</ul></section>}
     {mechanic.genres.length > 0 && <section class="detail-section"><h2 data-static-i18n="genres">Genres</h2><ul class="inline-list">{mechanic.genres.map((genre) => <li>{taxonomy.genres.find((item) => item.id === genre)?.title || genre}</li>)}</ul></section>}

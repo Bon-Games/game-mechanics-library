@@ -1,8 +1,8 @@
 import { strict as assert } from "node:assert";
 import { readFileSync } from "node:fs";
 import { test } from "node:test";
-import { createCards } from "../src/domain/library";
-import { mechanicSchema, sourceSchema, type Mechanic } from "../src/domain/schema";
+import { createCards, previewMedia } from "../src/domain/library";
+import { hasOwnSummary, mechanicSchema, sourceSchema, STARTER_SUMMARY, type Mechanic } from "../src/domain/schema";
 import { validateDocument, validateLibrary } from "../src/domain/validate";
 import { parseDocument, readContent } from "../src/lib/read-content";
 
@@ -79,6 +79,36 @@ test("videos accept only YouTube watch and short links", () => {
     assert.equal(mechanicSchema.safeParse({ ...sample, videos: [{ ...video, url }] }).success, false, url);
   }
   assert.equal(mechanicSchema.safeParse({ ...sample, videos: [{ ...video, url: "https://youtu.be/-A-djjimCcM", extra: 1 }] }).success, false);
+});
+
+test("images are local, attributed and stored under their mechanic ID", () => {
+  const image = { src: "media/mechanics/" + sample.id + "/board.webp", alt: "Board", credit: "Author", license: "CC BY 4.0", sourceUrl: "https://example.org/board" };
+  assert.equal(mechanicSchema.safeParse({ ...sample, images: [image] }).success, true);
+  for (const src of ["https://example.org/board.webp", "/media/mechanics/" + sample.id + "/board.webp", "media/mechanics/" + sample.id + "/board.svg", "media/other/board.png"]) {
+    assert.equal(mechanicSchema.safeParse({ ...sample, images: [{ ...image, src }] }).success, false, src);
+  }
+  const { alt: _alt, ...withoutAlt } = image;
+  assert.equal(mechanicSchema.safeParse({ ...sample, images: [withoutAlt] }).success, false);
+  validate([{ ...sample, images: [image] }]);
+  assert.throws(() => validate([{ ...sample, images: [{ ...image, src: "media/mechanics/other-id/board.webp" }] }]), /image must live under/);
+});
+
+test("preview media prefers a video, then an image, then nothing", () => {
+  const video = { title: "Demo", creator: "Channel", url: "https://youtu.be/-A-djjimCcM" };
+  const image = { src: "media/mechanics/" + sample.id + "/board.webp", alt: "Board", credit: "Author", license: "CC BY 4.0", sourceUrl: "https://example.org/board" };
+  assert.deepEqual(previewMedia({ videos: [video], images: [image] }), { kind: "video", videoId: "-A-djjimCcM", title: "Demo" });
+  assert.deepEqual(previewMedia({ images: [image] }), { kind: "image", src: image.src, alt: "Board" });
+  assert.deepEqual(previewMedia({}), { kind: "none" });
+  assert.deepEqual(createCards([{ ...sample, videos: [video] }], categories)[0]!.media.kind, "video");
+});
+
+test("starter entries show a summary only when it replaces the shared placeholder", () => {
+  assert.equal(hasOwnSummary({ maturity: "starter", summary: STARTER_SUMMARY }), false);
+  assert.equal(hasOwnSummary({ maturity: "starter", summary: "An authored description." }), true);
+  assert.equal(hasOwnSummary({ maturity: "reviewed", summary: STARTER_SUMMARY }), true);
+  const mancala = allMechanics.find((entry) => entry.id === "mancala")!;
+  assert.equal(mancala.maturity, "starter");
+  assert.equal(hasOwnSummary(mancala), true);
 });
 
 test("invalid taxonomy, identities and relationships fail with actionable context", () => {

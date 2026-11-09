@@ -12,7 +12,7 @@ const card: MechanicCard = {
   id: "double-jump", title: "Double Jump", summary: "Jump again while airborne.",
   categoryId: "movement", categoryTitle: "Movement & Traversal", subcategoryId: "jumping", subcategoryTitle: "Jumping & Aerial",
   maturity: "reviewed", language: "en", tags: ["air"], genres: ["platformer"], aliases: ["Air Jump"], examples: ["Example Game"],
-  sources: [{ sourceId: "curated-starter" }],
+  sources: [{ sourceId: "curated-starter" }], media: { kind: "none" },
 };
 const catalogue = { categories, cards: [card] };
 
