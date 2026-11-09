@@ -1,0 +1,21 @@
+---
+import SiteLayout from "../../layouts/SiteLayout.astro";
+import { loadLibrary } from "../../lib/library";
+import { withBase } from "../../domain/urls";
+const { cards, categories } = await loadLibrary();
+const base = import.meta.env.BASE_URL;
+---
+<SiteLayout title="Categories" description="Browse every published game mechanic through complete static category listings.">
+  <section class="subpage" aria-labelledby="categories-title">
+    <h1 id="categories-title" data-static-i18n="categories">Categories</h1>
+    <p class="lead" data-static-i18n="categoryIntro">Browse every published entry through ordinary links. Names and mechanic documentation remain in English.</p>
+    <p class="metadata">{cards.length} <span data-static-i18n="mechanics">mechanics</span> / {categories.length} <span data-static-i18n="categoryCount">categories</span></p>
+    <div class="category-grid">
+      {categories.map((category) => <article class="category-card" lang="en">
+        <h2><a href={withBase(base, "categories/" + category.id)}>{category.title}</a></h2>
+        <p>{category.subcategories.map((subcategory) => subcategory.title).join(", ")}</p>
+        <span class="metadata">{cards.filter((card) => card.categoryId === category.id).length} <span data-static-i18n="mechanics">mechanics</span></span>
+      </article>)}
+    </div>
+  </section>
+</SiteLayout>

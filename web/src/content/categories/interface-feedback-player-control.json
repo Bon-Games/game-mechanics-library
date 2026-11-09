@@ -1,0 +1,22 @@
+{
+  "id": "interface-feedback-player-control",
+  "title": "Interface, Feedback & Player Control",
+  "subcategories": [
+    {
+      "id": "interface-feedback-player-control-input-interaction",
+      "title": "Input & Interaction"
+    },
+    {
+      "id": "interface-feedback-player-control-camera-perception",
+      "title": "Camera & Perception"
+    },
+    {
+      "id": "interface-feedback-player-control-information-hud",
+      "title": "Information & HUD"
+    },
+    {
+      "id": "interface-feedback-player-control-feedback",
+      "title": "Feedback"
+    }
+  ]
+}

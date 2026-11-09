@@ -1,0 +1,22 @@
+{
+  "id": "resources-inventory",
+  "title": "Resources & Inventory",
+  "subcategories": [
+    {
+      "id": "resources-inventory-resource-acquisition",
+      "title": "Resource Acquisition"
+    },
+    {
+      "id": "resources-inventory-resource-management",
+      "title": "Resource Management"
+    },
+    {
+      "id": "resources-inventory-inventory",
+      "title": "Inventory"
+    },
+    {
+      "id": "resources-inventory-resource-exchange",
+      "title": "Resource Exchange"
+    }
+  ]
+}

@@ -1,39 +1,57 @@
 # Game Mechanics Library
 
-Mobile-first, read-only game mechanics reference hosted on GitHub Pages.
+A public, read-only reference for game creators. The preserved starter catalogue
+contains 763 mechanic names, 20 categories, and six source records. Starter entries
+explicitly identify research that remains to be done.
 
-**Website:** https://mechanics-lib.bongames.org/  
-**Repository:** https://github.com/Bon-Games/game-mechanics-library
+The application lives in [`web/`](web/). Astro pre-renders permanent mechanic and
+category pages; React enhances discovery; Pagefind searches the built English
+content. Interface labels are available in English and Vietnamese. There is no
+backend, account system, browser editor, or automatic content import.
 
-## V4 interface (November 2026)
-The landing page has been rebuilt to follow the visual direction of [Mechanics Library website V4 in Canva](https://www.canva.com/design/DAHaPa85kbA/1Lia9vLNn4WRz-5GsLxnDw/edit), replacing the earlier teal sidebar layout.
+Use Node.js 24 LTS and npm 10 or newer:
 
-- Top navigation: Home, Search, Contribute, About; compact mobile menu.
-- Deep navy background, purple accent, community-maintained hero section, five featured category cards, and a reference entries area.
-- Search by name, category, subcategory, aliases, tags, and examples (where available).
-- Filter by category, subcategory and source; sort by name or category; switch between grid and list layouts.
-- Shareable URL state for searches, filters, pagination, display mode and language.
-- English and Vietnamese interface labels (mechanic data retains its original English names).
-- Client-side pagination: 12 records per page on small screens, 24 on desktop.
-- Detail dialog with per-entry source and licence attribution.
-- Visually consistent [Sources & credits](https://mechanics-lib.bongames.org/sources/) and [Contributors](https://mechanics-lib.bongames.org/contributors/) pages.
-- 20 categories and 763 names in the curated starter list. Definitions and gameplay examples are largely pending research.
-
-The visual reference was available as a Canva design thumbnail, not as an editable website source, so exact pixel-level parity with all Canva states has not been established. Styles for this version are in `v4.css`; interactions are in `app.js`.
-
-## Data and editing
-The public site has **no database and no browser editing/import controls**. The published starter data is stored in [data/mechanics.txt](data/mechanics.txt), formatted as:
-
-```text
-Category|Subcategory|Mechanic Name,Another Mechanic Name
+```sh
+cd web
+npm ci
+npm run dev
 ```
 
-Source metadata is in [data/sources.json](data/sources.json). To publish changes, edit these files through a GitHub pull request or commit. Publishing is triggered by commits to `master`; a GitHub Actions workflow for Pages deployment is stored in `.github/workflows/deploy-pages.yml`. The website loads the dataset using browser JavaScript and does not write back to GitHub.
+For production search and full release verification:
 
-For a future larger corpus, migrate to a structured canonical JSON dataset with record IDs, descriptions, aliases, example games and record-level source references, plus a separate import/validation pipeline for maintainers. Do not treat this starter list as a fully sourced encyclopaedia.
+```sh
+npm run build
+npm run preview
+# In a second terminal, from web/:
+npm run test:e2e
+# Both hosting modes, isolated fixtures, draft transition, final production rebuild:
+npm run verify:release
+```
 
-## Credits and licences
-See [SOURCES.md](SOURCES.md). Reference-only sources are not automatically imported. Check licences before republishing third-party descriptions. Preserve all original citations when combining records.
+Install the test browser once with `npx playwright install chromium`. An installed
+Chrome can be selected with `PLAYWRIGHT_CHANNEL=chrome`; see the development guide
+for Windows environment syntax and the required Node runtime.
 
-## Hosting
-GitHub Pages (branch `master`, root directory), Cloudflare DNS CNAME `mechanics-lib.bongames.org` → `bon-games.github.io`.
+Author mechanic Markdown in `web/src/content/mechanics/<immutable-id>.md`.
+Taxonomy and source registries live beside it. Validation checks identity,
+classification, citations, safe links, research status, and publication rules.
+Drafts are excluded from the public artifact and search. Do not invent missing
+definitions, examples, tags, relationships, or provenance.
+
+- [Development and authoring](docs/development/guidelines.md)
+- [Content contracts](docs/architecture/data-model.md)
+- [Architecture](docs/architecture/overview.md) and [requirements](docs/requirements/prd.md)
+- [Migration plan](docs/plan/architecture-migration.md) and [design](docs/plan/website-design.md)
+- [Implementation evidence](docs/development/implementation-evidence.md)
+- [Release and rollback](docs/development/release.md)
+- [Source reuse policy](SOURCES.md)
+
+Only verified `web/dist/` is deployable. Pull requests and master pushes validate;
+publishing requires the manual Pages workflow on `master` with `publish` selected.
+The production domain remains <https://mechanics-lib.bongames.org/>. Project-subpath
+hosting is also covered by release verification.
+
+The original root `index.html`, `app.js`, styles, and `data/` remain as a legacy
+rollback source. They are not included in the new artifact. The baseline data is
+also frozen under `web/tests/fixtures/legacy/`. No legacy file was retired during
+this migration.

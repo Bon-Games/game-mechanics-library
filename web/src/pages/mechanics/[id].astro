@@ -1,0 +1,52 @@
+---
+import { render } from "astro:content";
+import SiteLayout from "../../layouts/SiteLayout.astro";
+import { loadLibrary } from "../../lib/library";
+import { withBase } from "../../domain/urls";
+import { rankCards } from "../../domain/browse";
+export async function getStaticPaths() {
+  const library = await loadLibrary();
+  const nameRanks = new Map(rankCards(library.cards, "name").map((card, index) => [card.id, index]));
+  const categoryRanks = new Map(rankCards(library.cards, "category").map((card, index) => [card.id, index]));
+  return library.mechanics.map((entry) => ({ params: { id: entry.data.id }, props: { entry, categories: library.categories, sources: library.sources, cards: library.cards, taxonomy: library.taxonomy, nameRank: nameRanks.get(entry.data.id), categoryRank: categoryRanks.get(entry.data.id) } }));
+}
+const { entry, categories, sources, cards, taxonomy, nameRank, categoryRank } = Astro.props;
+const mechanic = entry.data;
+const { Content } = await render(entry);
+const category = categories.find((item) => item.id === mechanic.categoryId)!;
+const subcategory = category.subcategories.find((item) => item.id === mechanic.subcategoryId)!;
+const base = import.meta.env.BASE_URL;
+const related = cards.filter((card) => mechanic.relatedIds.includes(card.id));
+---
+<SiteLayout title={mechanic.title} description={mechanic.summary}>
+  <article class="subpage mechanic-detail" lang="en" data-pagefind-body data-pagefind-meta={"mechanic_id:" + mechanic.id}>
+    <nav class="breadcrumbs" aria-label="Breadcrumb" data-static-aria="breadcrumb" data-pagefind-ignore><a href={withBase(base)} data-static-i18n="home">Home</a><span aria-hidden="true">/</span><a href={withBase(base, "categories/" + category.id)}>{category.title}</a><span aria-hidden="true">/</span><span>{mechanic.title}</span></nav>
+    <h1 data-pagefind-meta="title">{mechanic.title}</h1>
+    <p class="classification"><a href={withBase(base, "categories/" + category.id)}>{category.title}</a><span aria-hidden="true"> / </span><a href={withBase(base, "categories/" + category.id) + "#" + subcategory.id}>{subcategory.title}</a></p>
+    <span hidden data-pagefind-filter={"category:" + mechanic.categoryId}>{category.title}</span>
+    <span hidden data-pagefind-filter={"subcategory:" + mechanic.subcategoryId}>{subcategory.title}</span>
+    {mechanic.sources.map((reference) => <span hidden data-pagefind-filter={"source:" + reference.sourceId}>{reference.sourceId}</span>)}
+    <span hidden data-pagefind-sort="name_rank">{nameRank}</span><span hidden data-pagefind-sort="category_rank">{categoryRank}</span>
+    {mechanic.maturity === "starter" ? <aside class="starter-notice" data-pagefind-ignore data-static-i18n="starterNotice">Starter entry. This mechanic has not been researched.</aside> : <p class="research-status" data-pagefind-ignore data-static-i18n="reviewed">Reviewed entry</p>}
+    <div class="prose reading-body"><p class="lead">{mechanic.summary}</p><Content /></div>
+    {mechanic.aliases.length > 0 && <section class="detail-section"><h2 data-static-i18n="aliases">Also known as</h2><ul class="plain-list">{mechanic.aliases.map((alias) => <li>{alias}</li>)}</ul></section>}
+    {mechanic.tags.length > 0 && <section class="detail-section"><h2 data-static-i18n="tags">Tags</h2><ul class="inline-list">{mechanic.tags.map((tag) => <li data-pagefind-filter={"tag:" + tag}>{taxonomy.tags.find((item) => item.id === tag)?.title || tag}</li>)}</ul></section>}
+    {mechanic.genres.length > 0 && <section class="detail-section"><h2 data-static-i18n="genres">Genres</h2><ul class="inline-list">{mechanic.genres.map((genre) => <li>{taxonomy.genres.find((item) => item.id === genre)?.title || genre}</li>)}</ul></section>}
+    {mechanic.examples.length > 0 && <section class="detail-section"><h2 data-static-i18n="examples">Example games</h2><ul class="plain-list">{mechanic.examples.map((game) => <li>{game}</li>)}</ul></section>}
+    <section class="detail-section" aria-labelledby="sources-title">
+      <h2 id="sources-title" data-static-i18n="attribution">Sources &amp; attribution</h2>
+      {mechanic.sources.map((reference) => {
+        const source = sources.find((item) => item.id === reference.sourceId)!;
+        return <article class="source-entry citation" data-pagefind-ignore>
+          <h3><a href={reference.url} rel="noopener noreferrer">{source.title}</a></h3>
+          <p class="source-url"><a href={reference.url} rel="noopener noreferrer">{reference.url}</a></p>
+          <dl class="source-fields"><div><dt data-static-i18n="creator">Creator</dt><dd>{reference.creator}</dd></div><div><dt data-static-i18n="license">Licence</dt><dd>{reference.license}{reference.licenseUrl && <> <a href={reference.licenseUrl} rel="noopener noreferrer" data-static-i18n="licenseTerms">Licence terms</a></>}</dd></div><div><dt data-static-i18n="accessed">Recorded access date</dt><dd><time datetime={reference.accessedAt}>{reference.accessedAt}</time></dd></div><div><dt data-static-i18n="modification">Modification</dt><dd data-static-i18n={reference.modified ? "modified" : "unmodified"}>{reference.modified ? "Adapted or modified from the cited source." : "No modifications recorded."}</dd></div></dl>
+          <p>{reference.attribution}</p>
+          {reference.notes && <p>{reference.notes}</p>}
+        </article>;
+      })}
+    </section>
+    {related.length > 0 && <section class="detail-section" data-pagefind-ignore><h2 data-static-i18n="related">Related mechanics</h2><ul class="plain-list">{related.map((card) => <li><a href={withBase(base, "mechanics/" + card.id)}>{card.title}</a></li>)}</ul></section>}
+    <nav class="detail-actions" aria-label="Continue browsing" data-static-aria="continueBrowsing" data-pagefind-ignore><a class="button button-secondary" href={"https://github.com/Bon-Games/game-mechanics-library/issues/new?title=" + encodeURIComponent("Improve " + mechanic.title)} rel="noopener noreferrer" data-static-i18n="suggestEdit">Suggest an edit</a><a class="text-link" href={withBase(base, "categories/" + category.id)}>{category.title}</a><a class="text-link" href={withBase(base) + "#library"} data-static-i18n="findMechanics">Find mechanics</a></nav>
+  </article>
+</SiteLayout>

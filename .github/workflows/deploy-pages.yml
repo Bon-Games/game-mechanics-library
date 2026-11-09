@@ -1,34 +1,81 @@
-name: Deploy Game Mechanics Library to GitHub Pages
+name: Validate and release Game Mechanics Library
 
 on:
   push:
     branches: [master]
+  pull_request:
   workflow_dispatch:
+    inputs:
+      publish:
+        description: Publish the verified production artifact
+        type: boolean
+        default: false
 
 permissions:
   contents: read
-  pages: write
-  id-token: write
 
 concurrency:
-  group: github-pages
+  group: pages-${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Use Node 24
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: web/.node-version
+          cache: npm
+          cache-dependency-path: web/package-lock.json
+      - name: Install locked dependencies
+        run: npm ci
+        working-directory: web
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+        working-directory: web
+      - name: Verify production and subpath builds
+        run: npm run verify:release
+        working-directory: web
+      - name: Audit dependencies
+        run: npm audit --audit-level=low
+        working-directory: web
+      - name: Retain verification evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: verification-evidence
+          path: |
+            web/release-evidence/
+            web/test-results/
+            web/release-artifact.json
+      - name: Retain known-good production artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: production-site
+          path: web/dist/
+          include-hidden-files: true
+          retention-days: 30
+      - name: Upload Pages artifact
+        if: github.event_name == 'workflow_dispatch' && inputs.publish && github.ref == 'refs/heads/master'
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: web/dist/
   deploy:
+    needs: validate
+    if: github.event_name == 'workflow_dispatch' && inputs.publish && github.ref == 'refs/heads/master'
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
     steps:
-      - name: Checkout master
-        uses: actions/checkout@v4
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
-      - name: Upload static site
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: .
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4

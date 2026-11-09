@@ -1,0 +1,25 @@
+---
+import SiteLayout from "../layouts/SiteLayout.astro";
+import { loadLibrary } from "../lib/library";
+const { sources } = await loadLibrary();
+---
+<SiteLayout title="Sources & credits" description="Source registry, recorded attribution, licence statements, and reuse policy for the game mechanics reference.">
+  <article class="subpage">
+    <h1 data-static-i18n="sourcesCredits">Sources &amp; credits</h1>
+    <p class="lead" data-static-i18n="sourceIntro">Listing a reference does not mean its content has been imported. Each mechanic retains its own citation snapshots.</p>
+    <div class="source-registry">
+      {sources.map((source) => <article class="source-entry" id={source.id} lang="en">
+        <h2><a href={source.url} rel="noopener noreferrer">{source.title}</a></h2>
+        <p class="source-url"><a href={source.url} rel="noopener noreferrer">{source.url}</a></p>
+        <p class="metadata">ID: <code>{source.id}</code></p>
+        <dl class="source-fields"><div><dt data-static-i18n="creator">Creator</dt><dd>{source.creator}</dd></div><div><dt data-static-i18n="license">Licence</dt><dd>{source.license}{source.licenseUrl && <> <a href={source.licenseUrl} rel="noopener noreferrer" data-static-i18n="licenseTerms">Licence terms</a></>}</dd></div><div><dt data-static-i18n="accessed">Recorded access date</dt><dd><time datetime={source.accessedAt}>{source.accessedAt}</time></dd></div><div><dt data-static-i18n="sourceUsage">Usage</dt><dd><span data-static-i18n={source.usage === "starter_data" ? "starterData" : source.usage === "reference_only" ? "referenceOnly" : "importedData"}>{source.usage === "starter_data" ? "Starter compilation" : source.usage === "reference_only" ? "Reference only; no import implied" : "Imported material"}</span> <code>({source.usage})</code></dd></div></dl>
+        <p>{source.attribution}</p>
+      </article>)}
+    </div>
+    <section class="prose detail-section" lang="en"><h2 data-static-i18n="reusePolicy">Attribution and reuse policy</h2>
+      <p>These recorded licence statements preserve the migration baseline checked on 2026-11-07. They are not a fresh verification of reuse rights. Review the publisher's current conditions before each subsequent download or reuse.</p>
+      <ul><li>Preserve names, source URLs, creators, licences, access dates, and modification notes with each entry.</li><li>For CC BY 4.0 material, credit the creator, link the source and licence, and state whether the material was adapted, translated, or reclassified.</li><li>Use unverified sources as references until reuse permission has been checked. Listing a source does not authorize bulk import.</li><li>Write original definitions unless reusing permitted material with attribution. A common mechanic name and a third-party explanation have different reuse considerations.</li><li>Keep every contributing citation when merging records. Do not publish private research notes without reviewing them.</li></ul>
+      <p><a href="https://github.com/Bon-Games/game-mechanics-library/blob/master/SOURCES.md" rel="noopener noreferrer">Read the repository reuse policy</a></p>
+    </section>
+  </article>
+</SiteLayout>

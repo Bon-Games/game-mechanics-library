@@ -1,0 +1,22 @@
+{
+  "id": "narrative-dialogue-social",
+  "title": "Narrative, Dialogue & Social",
+  "subcategories": [
+    {
+      "id": "narrative-dialogue-social-narrative-structure",
+      "title": "Narrative Structure"
+    },
+    {
+      "id": "narrative-dialogue-social-dialogue-choice",
+      "title": "Dialogue & Choice"
+    },
+    {
+      "id": "narrative-dialogue-social-npc-relationships",
+      "title": "NPC Relationships"
+    },
+    {
+      "id": "narrative-dialogue-social-social-simulation",
+      "title": "Social Simulation"
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+---
+import SiteLayout from "../../layouts/SiteLayout.astro";
+import { loadLibrary } from "../../lib/library";
+import { withBase } from "../../domain/urls";
+export async function getStaticPaths() {
+  const { categories, cards } = await loadLibrary();
+  return categories.map((category) => ({ params: { id: category.id }, props: { category, cards: cards.filter((card) => card.categoryId === category.id) } }));
+}
+const { category, cards } = Astro.props;
+const base = import.meta.env.BASE_URL;
+---
+<SiteLayout title={category.title} description={"Browse all published mechanics in " + category.title + ", grouped by subcategory."}>
+  <article class="subpage">
+    <a class="back-link" href={withBase(base, "categories")} data-static-i18n="backCategories">Back to categories</a>
+    <h1 lang="en">{category.title}</h1>
+    <p class="lead">{cards.length} <span data-static-i18n="mechanics">mechanics</span>. <span data-static-i18n="groupedBy">Grouped by subcategory</span>.</p>
+    <a class="button button-secondary" href={withBase(base) + "?category=" + category.id + "#library"} data-static-i18n="findMechanics">Find mechanics</a>
+    {category.subcategories.map((subcategory) => {
+      const entries = cards.filter((card) => card.subcategoryId === subcategory.id);
+      return entries.length > 0 && <section class="subcategory-section" aria-labelledby={subcategory.id} lang="en">
+        <h2 id={subcategory.id}>{subcategory.title} <span class="heading-count">{entries.length}</span></h2>
+        <ul class="static-list">{entries.map((card) => <li><a href={withBase(base, "mechanics/" + card.id)}>{card.title}</a></li>)}</ul>
+      </section>;
+    })}
+  </article>
+</SiteLayout>

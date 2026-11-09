@@ -1,0 +1,18 @@
+{
+  "id": "physics-simulation",
+  "title": "Physics & Simulation",
+  "subcategories": [
+    {
+      "id": "physics-simulation-rigid-body-forces",
+      "title": "Rigid Body & Forces"
+    },
+    {
+      "id": "physics-simulation-material-world-simulation",
+      "title": "Material & World Simulation"
+    },
+    {
+      "id": "physics-simulation-interactive-simulation",
+      "title": "Interactive Simulation"
+    }
+  ]
+}

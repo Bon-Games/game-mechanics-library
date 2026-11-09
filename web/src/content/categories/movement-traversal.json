@@ -1,0 +1,22 @@
+{
+  "id": "movement-traversal",
+  "title": "Movement & Traversal",
+  "subcategories": [
+    {
+      "id": "movement-traversal-basic-movement",
+      "title": "Basic Movement"
+    },
+    {
+      "id": "movement-traversal-jumping-aerial",
+      "title": "Jumping & Aerial"
+    },
+    {
+      "id": "movement-traversal-advanced-traversal",
+      "title": "Advanced Traversal"
+    },
+    {
+      "id": "movement-traversal-momentum-vehicles",
+      "title": "Momentum & Vehicles"
+    }
+  ]
+}

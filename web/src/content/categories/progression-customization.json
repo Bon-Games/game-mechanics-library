@@ -1,0 +1,22 @@
+{
+  "id": "progression-customization",
+  "title": "Progression & Customization",
+  "subcategories": [
+    {
+      "id": "progression-customization-character-growth",
+      "title": "Character Growth"
+    },
+    {
+      "id": "progression-customization-equipment-builds",
+      "title": "Equipment & Builds"
+    },
+    {
+      "id": "progression-customization-unlock-systems",
+      "title": "Unlock Systems"
+    },
+    {
+      "id": "progression-customization-long-term-progression",
+      "title": "Long-Term Progression"
+    }
+  ]
+}

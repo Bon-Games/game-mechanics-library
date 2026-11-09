@@ -1,0 +1,22 @@
+{
+  "id": "exploration-world-interaction",
+  "title": "Exploration & World Interaction",
+  "subcategories": [
+    {
+      "id": "exploration-world-interaction-world-navigation",
+      "title": "World Navigation"
+    },
+    {
+      "id": "exploration-world-interaction-environmental-interaction",
+      "title": "Environmental Interaction"
+    },
+    {
+      "id": "exploration-world-interaction-discovery-investigation",
+      "title": "Discovery & Investigation"
+    },
+    {
+      "id": "exploration-world-interaction-world-dynamics",
+      "title": "World Dynamics"
+    }
+  ]
+}

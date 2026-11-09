@@ -1,0 +1,22 @@
+{
+  "id": "randomness-risk-probability",
+  "title": "Randomness, Risk & Probability",
+  "subcategories": [
+    {
+      "id": "randomness-risk-probability-random-generation",
+      "title": "Random Generation"
+    },
+    {
+      "id": "randomness-risk-probability-probability-control",
+      "title": "Probability Control"
+    },
+    {
+      "id": "randomness-risk-probability-risk-decisions",
+      "title": "Risk Decisions"
+    },
+    {
+      "id": "randomness-risk-probability-outcome-resolution",
+      "title": "Outcome Resolution"
+    }
+  ]
+}

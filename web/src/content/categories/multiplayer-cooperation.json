@@ -1,0 +1,22 @@
+{
+  "id": "multiplayer-cooperation",
+  "title": "Multiplayer & Cooperation",
+  "subcategories": [
+    {
+      "id": "multiplayer-cooperation-competition",
+      "title": "Competition"
+    },
+    {
+      "id": "multiplayer-cooperation-cooperation",
+      "title": "Cooperation"
+    },
+    {
+      "id": "multiplayer-cooperation-social-communication",
+      "title": "Social Communication"
+    },
+    {
+      "id": "multiplayer-cooperation-session-competitive-rules",
+      "title": "Session & Competitive Rules"
+    }
+  ]
+}

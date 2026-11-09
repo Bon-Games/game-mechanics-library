@@ -1,0 +1,8 @@
+---
+import SiteLayout from "../layouts/SiteLayout.astro";
+import { withBase } from "../domain/urls";
+const base = import.meta.env.BASE_URL;
+---
+<SiteLayout title="Page not found" description="Continue browsing the game mechanics library or its complete category listings." noindex>
+  <section class="subpage not-found"><h1 data-static-i18n="notFound">Page not found</h1><p class="lead" data-static-i18n="notFoundDescription">This page may have moved or may not be published. Continue through the library or browse categories.</p><div class="detail-actions"><a class="button button-primary" href={withBase(base) + "#library"} data-static-i18n="findMechanics">Find mechanics</a><a class="button button-secondary" href={withBase(base, "categories")} data-static-i18n="seeCategories">See categories</a></div></section>
+</SiteLayout>

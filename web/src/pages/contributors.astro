@@ -1,0 +1,20 @@
+---
+import SiteLayout from "../layouts/SiteLayout.astro";
+import { withBase } from "../domain/urls";
+const base = import.meta.env.BASE_URL;
+---
+<SiteLayout title="Contributors" description="Propose game mechanics, improve starter research, and preserve source attribution through the Bon Games GitHub project.">
+  <article class="subpage">
+    <h1 data-static-i18n="contributors">Contributors</h1>
+    <p class="lead" data-static-i18n="contributorIntro">Mechanics Library is maintained by Bon Games. Propose entries, sources, and corrections through GitHub issues and pull requests.</p>
+    <section class="prose detail-section" lang="en"><h2 data-static-i18n="contributionSteps">How to contribute</h2>
+      <ol class="contribution-steps"><li>Search the library first. For a correction, include the existing mechanic's permanent URL.</li><li>Open a GitHub issue with the mechanic name, proposed category, and what should change. Starter entries can be improved gradually.</li><li>Add source links, creator credits, licence terms, access dates, and a note describing any adaptations. Do not copy definitions from a source with unverified reuse rights.</li><li>For a pull request, edit the canonical record under <code>web/src/content/mechanics/</code>. Keep its immutable ID, preserve citation snapshots, and follow the development guide.</li></ol>
+      <div class="detail-actions"><a class="button button-primary" href="https://github.com/Bon-Games/game-mechanics-library/issues" rel="noopener noreferrer" data-static-i18n="suggestEntry">Suggest an entry</a><a class="text-link" href="https://github.com/Bon-Games/game-mechanics-library/blob/master/docs/development/guidelines.md" rel="noopener noreferrer">Development guide</a></div>
+    </section>
+    <section class="detail-section" aria-labelledby="project-credits"><h2 id="project-credits" data-static-i18n="credits">Project credits</h2>
+      <article class="source-entry" lang="en"><h3>Bon Games</h3><p>Repository owner and project maintainer.</p><a class="text-link" href="https://github.com/Bon-Games" rel="noopener noreferrer">Bon Games on GitHub</a></article>
+      <article class="source-entry" lang="en"><h3>Repository contributors</h3><p>GitHub tracks contributions and commit history. Refer to the repository for the current contributor list.</p><a class="text-link" href="https://github.com/Bon-Games/game-mechanics-library/graphs/contributors" rel="noopener noreferrer">View repository contributors</a></article>
+    </section>
+    <section class="prose detail-section" lang="en"><h2 data-static-i18n="reusePolicy">Attribution and reuse policy</h2><p>Consulting a source does not mean importing its content. Preserve source and licence information on the individual record, and keep all citations when combining research. The library's starter compilation does not imply that each listed mechanic has been researched.</p><a class="text-link" href={withBase(base, "sources")} data-static-i18n="sourcesCredits">Sources &amp; credits</a></section>
+  </article>
+</SiteLayout>

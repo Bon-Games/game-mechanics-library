@@ -1,0 +1,22 @@
+{
+  "id": "abilities-status-effects",
+  "title": "Abilities & Status Effects",
+  "subcategories": [
+    {
+      "id": "abilities-status-effects-ability-activation",
+      "title": "Ability Activation"
+    },
+    {
+      "id": "abilities-status-effects-ability-mechanics",
+      "title": "Ability Mechanics"
+    },
+    {
+      "id": "abilities-status-effects-buffs-debuffs",
+      "title": "Buffs & Debuffs"
+    },
+    {
+      "id": "abilities-status-effects-status-interactions",
+      "title": "Status Interactions"
+    }
+  ]
+}

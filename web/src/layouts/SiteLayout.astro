@@ -1,0 +1,136 @@
+---
+import "../styles/global.css";
+import { withBase } from "../domain/urls";
+interface Props { title?: string; description?: string; noindex?: boolean; }
+const { title = "Game mechanics for game creators", description = "Find game mechanics by category and source in a public reference. Starter entries show their research status and provenance.", noindex = false } = Astro.props;
+const base = import.meta.env.BASE_URL;
+const home = withBase(base);
+const canonical = new URL(noindex && /\/404\/?$/.test(Astro.url.pathname) ? withBase(base, "404.html") : Astro.url.pathname, Astro.site);
+const pageTitle = title + " | Mechanics Library";
+---
+<!doctype html>
+<html lang="en" data-type="software" data-radius="soft">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="theme-color" content="#0b1020" />
+    <meta name="page-type" content="software" />
+    <meta name="site-kind" content="software" />
+    <meta name="description" content={description} />
+    <meta name="robots" content={noindex ? "noindex,follow" : "index,follow"} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical} />
+    <meta name="twitter:card" content="summary" />
+    <link rel="canonical" href={canonical} />
+    <link rel="sitemap" href={withBase(base, "sitemap-index.xml")} />
+    <title>{pageTitle}</title>
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content" data-static-i18n="skip">Skip to content</a>
+    <header class="site-header" data-pagefind-ignore>
+      <div class="header-inner">
+        <a class="site-brand" href={home + "#home"}><span class="brand-icon" aria-hidden="true">M</span><span>Mechanics Library</span></a>
+        <nav id="main-nav" class="main-nav" aria-label="Main navigation" data-static-aria="mainNavigation">
+          <a href={home + "#home"} data-static-i18n="home">Home</a>
+          <a href={home + "#library"} data-static-i18n="search">Search</a>
+          <a href={withBase(base, "categories")} data-static-i18n="categories">Categories</a>
+          <a href={home + "#contribute"} data-static-i18n="contribute">Contribute</a>
+          <a href={home + "#about"} data-static-i18n="about">About</a>
+        </nav>
+        <label class="language-picker"><span class="sr-only" data-static-i18n="language">Interface language</span><select id="language-select"><option value="en">EN</option><option value="vi">VI</option></select></label>
+        <button id="mobile-nav-toggle" class="mobile-nav-toggle" type="button" aria-controls="mobile-navigation" aria-expanded="false" aria-haspopup="dialog" data-static-i18n="menu">Menu</button>
+      </div>
+    </header>
+    <dialog id="mobile-navigation" class="mobile-navigation" aria-labelledby="mobile-menu-title" data-pagefind-ignore>
+      <div class="mobile-menu-heading"><h2 id="mobile-menu-title" data-static-i18n="navigation">Navigation</h2><button id="mobile-nav-close" class="button button-secondary" type="button" data-static-i18n="closeMenu">Close menu</button></div>
+      <nav aria-label="Mobile navigation" data-static-aria="mobileNavigation">
+        <a href={home + "#home"} data-static-i18n="home">Home</a>
+        <a href={home + "#library"} data-static-i18n="search">Search</a>
+        <a href={withBase(base, "categories")} data-static-i18n="categories">Categories</a>
+        <a href={home + "#contribute"} data-static-i18n="contribute">Contribute</a>
+        <a href={home + "#about"} data-static-i18n="about">About</a>
+        <a href={withBase(base, "sources")} data-static-i18n="sourcesCredits">Sources &amp; credits</a>
+        <a href={withBase(base, "contributors")} data-static-i18n="contributors">Contributors</a>
+      </nav>
+    </dialog>
+    <main id="main-content" class="page-container" tabindex="-1"><slot /></main>
+    <footer class="site-footer page-container" data-pagefind-ignore>
+      <span>Bon Games | Mechanics Library</span>
+      <nav aria-label="Footer navigation" data-static-aria="footerNavigation">
+        <a href={withBase(base, "sources")} data-static-i18n="sourcesCredits">Sources &amp; credits</a>
+        <a href={withBase(base, "contributors")} data-static-i18n="contributors">Contributors</a>
+        <a href="https://github.com/Bon-Games/game-mechanics-library" rel="noopener noreferrer">GitHub</a>
+      </nav>
+    </footer>
+    <script>
+      import { staticLabels } from "../components/static-labels";
+      const toggle = document.getElementById("mobile-nav-toggle") as HTMLButtonElement;
+      const menu = document.getElementById("mobile-navigation") as HTMLDialogElement;
+      const picker = document.getElementById("language-select") as HTMLSelectElement;
+      const wide = window.matchMedia("(min-width: 1024px)");
+      function closeMenu(restore = true) {
+        if (!menu.open) return;
+        menu.close();
+        toggle.setAttribute("aria-expanded", "false");
+        document.body.classList.remove("menu-open");
+        if (restore && !wide.matches) toggle.focus();
+      }
+      toggle.addEventListener("click", () => {
+        menu.showModal();
+        toggle.setAttribute("aria-expanded", "true");
+        document.body.classList.add("menu-open");
+      });
+      document.getElementById("mobile-nav-close")?.addEventListener("click", () => closeMenu());
+      menu.addEventListener("cancel", (event) => { event.preventDefault(); closeMenu(); });
+      menu.addEventListener("click", (event) => { if (event.target === menu) closeMenu(); });
+      menu.querySelectorAll("a").forEach((link) => link.addEventListener("click", () => closeMenu()));
+      menu.addEventListener("keydown", (event) => {
+        if (event.key !== "Tab") return;
+        const controls = [...menu.querySelectorAll<HTMLElement>("a[href],button:not([disabled])")];
+        const first = controls[0];
+        const last = controls.at(-1);
+        if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last?.focus(); }
+        else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first?.focus(); }
+      });
+      wide.addEventListener("change", () => { if (wide.matches && menu.open) { closeMenu(false); document.querySelector<HTMLAnchorElement>("#main-nav a")?.focus(); } });
+      function applyLanguage(lang: string) {
+        const language = lang === "vi" ? "vi" : "en";
+        document.documentElement.lang = language;
+        picker.value = language;
+        document.querySelectorAll<HTMLElement>("[data-static-i18n]").forEach((element) => {
+          const pair = staticLabels[element.dataset.staticI18n as keyof typeof staticLabels];
+          if (pair) { element.textContent = pair[language]; element.lang = language; }
+        });
+        document.querySelectorAll<HTMLElement>("[data-static-aria]").forEach((element) => {
+          const pair = staticLabels[element.dataset.staticAria as keyof typeof staticLabels];
+          if (pair) element.setAttribute("aria-label", pair[language]);
+        });
+        document.querySelectorAll<HTMLAnchorElement>("a[href]").forEach((link) => {
+          const url = new URL(link.href);
+          if (url.origin !== location.origin || link.getAttribute("href")?.startsWith("#")) return;
+          if (language === "vi") url.searchParams.set("lang", "vi");
+          else url.searchParams.delete("lang");
+          link.href = url.pathname + url.search + url.hash;
+        });
+      }
+      const restoreLanguage = () => applyLanguage(new URLSearchParams(location.search).get("lang") || "en");
+      picker.addEventListener("change", () => {
+        if (document.querySelector("[data-library-browser]")) {
+          window.dispatchEvent(new CustomEvent("library-language-request", { detail: { lang: picker.value } }));
+        } else {
+          const url = new URL(location.href);
+          if (picker.value === "vi") url.searchParams.set("lang", "vi");
+          else url.searchParams.delete("lang");
+          history.pushState({}, "", url.pathname + url.search + url.hash);
+          applyLanguage(picker.value);
+        }
+      });
+      window.addEventListener("library-language", (event) => applyLanguage((event as CustomEvent<{lang: string}>).detail.lang));
+      window.addEventListener("popstate", restoreLanguage);
+      restoreLanguage();
+      document.documentElement.classList.add("js");
+    </script>
+  </body>
+</html>

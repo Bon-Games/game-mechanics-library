@@ -1,0 +1,22 @@
+{
+  "id": "strategy-tactics-territory",
+  "title": "Strategy, Tactics & Territory",
+  "subcategories": [
+    {
+      "id": "strategy-tactics-territory-positioning",
+      "title": "Positioning"
+    },
+    {
+      "id": "strategy-tactics-territory-unit-command",
+      "title": "Unit Command"
+    },
+    {
+      "id": "strategy-tactics-territory-territory-expansion",
+      "title": "Territory & Expansion"
+    },
+    {
+      "id": "strategy-tactics-territory-strategic-planning",
+      "title": "Strategic Planning"
+    }
+  ]
+}

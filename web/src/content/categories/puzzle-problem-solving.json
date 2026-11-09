@@ -1,0 +1,22 @@
+{
+  "id": "puzzle-problem-solving",
+  "title": "Puzzle & Problem Solving",
+  "subcategories": [
+    {
+      "id": "puzzle-problem-solving-logic-deduction",
+      "title": "Logic & Deduction"
+    },
+    {
+      "id": "puzzle-problem-solving-spatial-environmental",
+      "title": "Spatial & Environmental"
+    },
+    {
+      "id": "puzzle-problem-solving-pattern-matching",
+      "title": "Pattern & Matching"
+    },
+    {
+      "id": "puzzle-problem-solving-construction-timing",
+      "title": "Construction & Timing"
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "id": "economy-trading",
+  "title": "Economy & Trading",
+  "subcategories": [
+    {
+      "id": "economy-trading-currency",
+      "title": "Currency"
+    },
+    {
+      "id": "economy-trading-markets-pricing",
+      "title": "Markets & Pricing"
+    },
+    {
+      "id": "economy-trading-ownership-income",
+      "title": "Ownership & Income"
+    },
+    {
+      "id": "economy-trading-commerce-loops",
+      "title": "Commerce Loops"
+    }
+  ]
+}

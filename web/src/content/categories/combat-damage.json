@@ -1,0 +1,22 @@
+{
+  "id": "combat-damage",
+  "title": "Combat & Damage",
+  "subcategories": [
+    {
+      "id": "combat-damage-attacks",
+      "title": "Attacks"
+    },
+    {
+      "id": "combat-damage-defense",
+      "title": "Defense"
+    },
+    {
+      "id": "combat-damage-damage-resolution",
+      "title": "Damage Resolution"
+    },
+    {
+      "id": "combat-damage-combat-flow",
+      "title": "Combat Flow"
+    }
+  ]
+}

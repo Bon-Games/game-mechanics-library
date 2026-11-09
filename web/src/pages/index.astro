@@ -1,0 +1,23 @@
+---
+import SiteLayout from "../layouts/SiteLayout.astro";
+import LibraryBrowser from "../components/LibraryBrowser";
+import { loadLibrary } from "../lib/library";
+import { withBase } from "../domain/urls";
+const { cards, categories, sources } = await loadLibrary();
+const base = import.meta.env.BASE_URL;
+---
+<SiteLayout>
+  <section class="hero" id="home" aria-labelledby="hero-heading" data-enter>
+    <h1 id="hero-heading" data-static-i18n="heroTitle">Game mechanics for game creators.</h1>
+    <p class="hero-description" data-static-i18n="heroDescription">Search the index by mechanic, category, or source. Definitions and examples in starter entries are still being researched.</p>
+    <p class="hero-count"><strong>{cards.length}</strong> <span data-static-i18n="mechanics">mechanics</span> <span data-static-i18n="across">across</span> <strong>{categories.length}</strong> <span data-static-i18n="categoryCount">categories</span>.</p>
+    <div class="hero-actions"><a href="#library" class="button button-primary" data-static-i18n="findMechanics">Find mechanics</a><a href={withBase(base, "categories")} class="text-link" data-static-i18n="seeCategories">See categories</a></div>
+  </section>
+  <LibraryBrowser cards={cards} categories={categories} sources={sources} base={base} client:load />
+  <noscript><aside class="starter-notice">Search requires JavaScript. <a class="text-link" href={withBase(base, "categories")}>Browse categories to read every published entry.</a></aside></noscript>
+  <section id="contribute" class="contribute-section" aria-labelledby="contribute-title">
+    <div><h2 id="contribute-title" data-static-i18n="contributeTitle">Contribute a mechanic</h2><p data-static-i18n="contributeDescription">Suggest an entry, add a source, or help research a starter through GitHub.</p><a class="text-link" href={withBase(base, "contributors")} data-static-i18n="contributors">Contributors</a></div>
+    <a class="button button-secondary" href="https://github.com/Bon-Games/game-mechanics-library/issues" rel="noopener noreferrer" data-static-i18n="suggestEntry">Suggest an entry</a>
+  </section>
+  <section id="about" class="about-section" aria-labelledby="about-title"><h2 id="about-title" data-static-i18n="aboutTitle">About the library</h2><p data-static-i18n="aboutDescription">This public starter index organizes common mechanic names by category. Starter entries need further research; source records distinguish the original compilation from references consulted. Mechanic documentation remains in English.</p><a class="text-link" href={withBase(base, "sources")} data-static-i18n="sourcesCredits">Sources &amp; credits</a></section>
+</SiteLayout>

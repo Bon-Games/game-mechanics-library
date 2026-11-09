@@ -1,0 +1,18 @@
+{
+  "id": "stealth-detection",
+  "title": "Stealth & Detection",
+  "subcategories": [
+    {
+      "id": "stealth-detection-concealment",
+      "title": "Concealment"
+    },
+    {
+      "id": "stealth-detection-detection",
+      "title": "Detection"
+    },
+    {
+      "id": "stealth-detection-infiltration-evasion",
+      "title": "Infiltration & Evasion"
+    }
+  ]
+}

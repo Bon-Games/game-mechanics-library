@@ -1,0 +1,26 @@
+{
+  "id": "objectives-rewards-meta",
+  "title": "Objectives, Rewards & Meta",
+  "subcategories": [
+    {
+      "id": "objectives-rewards-meta-objectives",
+      "title": "Objectives"
+    },
+    {
+      "id": "objectives-rewards-meta-victory-failure",
+      "title": "Victory & Failure"
+    },
+    {
+      "id": "objectives-rewards-meta-rewards",
+      "title": "Rewards"
+    },
+    {
+      "id": "objectives-rewards-meta-meta-progression-liveops",
+      "title": "Meta Progression & LiveOps"
+    },
+    {
+      "id": "objectives-rewards-meta-difficulty-modes",
+      "title": "Difficulty & Modes"
+    }
+  ]
+}

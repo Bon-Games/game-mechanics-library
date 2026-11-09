@@ -1,0 +1,22 @@
+{
+  "id": "survival-life-simulation",
+  "title": "Survival & Life Simulation",
+  "subcategories": [
+    {
+      "id": "survival-life-simulation-survival-needs",
+      "title": "Survival Needs"
+    },
+    {
+      "id": "survival-life-simulation-survival-consequences",
+      "title": "Survival Consequences"
+    },
+    {
+      "id": "survival-life-simulation-recovery-sustain",
+      "title": "Recovery & Sustain"
+    },
+    {
+      "id": "survival-life-simulation-living-systems",
+      "title": "Living Systems"
+    }
+  ]
+}

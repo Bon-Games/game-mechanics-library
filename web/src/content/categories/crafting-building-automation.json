@@ -1,0 +1,22 @@
+{
+  "id": "crafting-building-automation",
+  "title": "Crafting, Building & Automation",
+  "subcategories": [
+    {
+      "id": "crafting-building-automation-crafting",
+      "title": "Crafting"
+    },
+    {
+      "id": "crafting-building-automation-construction",
+      "title": "Construction"
+    },
+    {
+      "id": "crafting-building-automation-production",
+      "title": "Production"
+    },
+    {
+      "id": "crafting-building-automation-automation",
+      "title": "Automation"
+    }
+  ]
+}

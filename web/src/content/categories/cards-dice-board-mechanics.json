@@ -1,0 +1,26 @@
+{
+  "id": "cards-dice-board-mechanics",
+  "title": "Cards, Dice & Board Mechanics",
+  "subcategories": [
+    {
+      "id": "cards-dice-board-mechanics-card-management",
+      "title": "Card Management"
+    },
+    {
+      "id": "cards-dice-board-mechanics-draft-collections",
+      "title": "Draft & Collections"
+    },
+    {
+      "id": "cards-dice-board-mechanics-board-placement",
+      "title": "Board Placement"
+    },
+    {
+      "id": "cards-dice-board-mechanics-dice-resolution",
+      "title": "Dice & Resolution"
+    },
+    {
+      "id": "cards-dice-board-mechanics-tabletop-competition",
+      "title": "Tabletop Competition"
+    }
+  ]
+}
