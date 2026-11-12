@@ -47,3 +47,15 @@ Companion approval is a relationship system in party-based games. Each companion
 Approval changes what the companion does and says. High approval unlocks personal quests, banter, romance, and passive perks; low approval changes conversations, removes bonuses, and can end with the companion leaving the party or turning hostile. Because companions hold different values, the player often has to choose between their own goals and keeping the party together.
 
 Dialogue choices, quest outcomes, gifts, and combat behaviour are the usual triggers.
+
+## Where it is used
+
+Companion-driven CRPGs and party-based action RPGs: BioWare-style narrative RPGs, Larian-style party games, and open-world RPGs with a recruited cast. It also appears in social-sim and relationship-driven games where a meter gates content.
+
+## Why developers use it
+
+It turns companions from combat sidekicks into characters whose reactions matter, which raises emotional investment and replay value. It also gives writers and quest designers one tunable value to gate personal quests, romance, and endings, and gives producers a measurable hook for dialogue and choice systems.
+
+## What the player sees and feels
+
+Players see approval through greetings, changed dialogue, pop-up "X approves" notifications, and sometimes a visible meter. They feel their choices carry weight and that companions hold values of their own: satisfaction when an ally respects them, tension when a decision might cost an ally, and the pull to replay to keep everyone loyal.
