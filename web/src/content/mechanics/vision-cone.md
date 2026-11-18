@@ -29,70 +29,15 @@
   ],
   "sources": [
     {
-      "sourceId": "web-research",
-      "url": "https://www.dlab.ninja/2025/06/how-to-implement-vision-cone-in-unity.html",
-      "creator": "Dante's Lab",
-      "license": "Blog content; no licence claimed",
-      "attribution": "Definition of the vision cone, its two defining parameters (range and half-angle), and a Unity implementation sketch. The original curated name and classification are preserved.",
+      "sourceId": "curated-starter",
+      "url": "https://github.com/Bon-Games/game-mechanics-library",
+      "creator": "Game Mechanics Library project",
+      "license": "Original compilation; attribution preferred",
+      "attribution": "Game Mechanics Library project. Curated list of common names. Category mapping is an original proposed taxonomy; names themselves are general terminology. Vision Cone specifics researched on 2026-11-19 from Dante's Lab, Game AI Pro, Obsidian Portal, UhiyamaLab, and Game Developer.",
       "licenseUrl": "",
       "accessedAt": "2026-11-19",
       "modified": true,
-      "notes": "Definition, parameters and implementation of the vision cone."
-    },
-    {
-      "sourceId": "web-research",
-      "url": "http://www.gameaipro.com/GameAIPro/GameAIPro_Chapter32_How_to_Catch_a_Ninja_NPC_Awareness_in_a_2D_Stealth_Platformer.pdf",
-      "creator": "Game AI Pro",
-      "license": "Book chapter; no licence claimed",
-      "attribution": "Definition of vision cone by offset, direction, angle and maximum distance, plus the sight/sound sense model.",
-      "licenseUrl": "",
-      "accessedAt": "2026-11-19",
-      "modified": true,
-      "notes": "Academic-game-design definition and use of vision cones."
-    },
-    {
-      "sourceId": "web-research",
-      "url": "https://blog.obsidianportal.com/sight-cones-and-sound-spheres/",
-      "creator": "Obsidian Portal",
-      "license": "Blog content; no licence claimed",
-      "attribution": "Shadow Tactics: Blades of the Shogun sight cone example, including blocked vision and banded partial-cover line pattern.",
-      "licenseUrl": "",
-      "accessedAt": "2026-11-19",
-      "modified": true,
-      "notes": "Example of a vision cone with occlusion and partial-cover behaviour."
-    },
-    {
-      "sourceId": "web-research",
-      "url": "https://uhiyama-lab.com/en/notes/godot/stealth-fov-system",
-      "creator": "UhiyamaLab",
-      "license": "Blog content; no licence claimed",
-      "attribution": "Stealth FOV system with three-stage check (range, angle, line of sight) and staged alert levels.",
-      "licenseUrl": "",
-      "accessedAt": "2026-11-19",
-      "modified": true,
-      "notes": "Implementation reference for stealth vision cone."
-    },
-    {
-      "sourceId": "web-research",
-      "url": "https://gamedeveloper.com/design/game-design-deep-dive-dynamic-detection-in-i-shadow-tactics-i-",
-      "creator": "Game Developer",
-      "license": "Article; no licence claimed",
-      "attribution": "Shadow Tactics viewcone design: coloured zones, single visible cone, slow motion on detection, level-design impact.",
-      "licenseUrl": "",
-      "accessedAt": "2026-11-19",
-      "modified": true,
-      "notes": "Design rationale for the vision cone in a commercial stealth game."
-    },
-    {
-      "sourceId": "web-research",
-      "url": "https://youtube.com/watch?v=XWMPEE8O05c",
-      "creator": "Aarthificial",
-      "license": "YouTube (Standard YouTube licence)",
-      "attribution": "YouTube video showing the Darkwood vision cone visual effect being recreated in Unity.",
-      "licenseUrl": "https://www.youtube.com/t/standardlicense",
-      "accessedAt": "2026-11-19",
-      "modified": true,
-      "notes": "Video reference for the vision cone visual effect (4:00). No third-party text copied."
+      "notes": "Definition, player experience, design/development/production rationale and store references researched on 2026-11-19. Sources consulted: Dante's Lab 'How to implement a vision cone in Unity', Game AI Pro 'How to Catch a Ninja', Obsidian Portal 'Sight Cones and Sound Spheres' (Shadow Tactics), UhiyamaLab 'Stealth Game FOV', Game Developer 'Dynamic detection in Shadow Tactics'. Store references verified via Steam and Epic Games Store listings. Video reference: 'Recreating Darkwood's Vision Effect in Unity' (Aarthificial, 4:00, YouTube). Description and category mapping preserved; no third-party text copied."
     }
   ]
 }
