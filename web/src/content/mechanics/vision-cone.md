@@ -8,8 +8,8 @@
   "status": "published",
   "maturity": "reviewed",
   "language": "en",
-  "tags": ["stealth", "detection", "field of view", "AI"],
-  "genres": ["Stealth", "Survival Horror", "Tactical", "Stealth Action"],
+  "tags": [],
+  "genres": [],
   "aliases": ["vision cone", "field of view", "cone of vision", "sight cone", "viewcone", "FOV"],
   "examples": [
     "Darkwood (Steam) - top-down survival horror where the player sees only through a forward cone that shifts as they turn.",
