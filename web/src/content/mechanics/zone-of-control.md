@@ -25,11 +25,11 @@ sources:
     url: "https://github.com/Bon-Games/game-mechanics-library"
     creator: "Game Mechanics Library project"
     license: "Original compilation; attribution preferred"
-    attribution: "Game Mechanics Library project. Zone of Control researched on 2026-11-19 from Wikipedia, WargameHQ (Mechanics Monday), gdp3, CivFanatics, Steam/SteamRegistry listings and the game store pages listed in the references."
+    attribution: "Game Mechanics Library project. Curated list of common names. Category mapping is an original proposed taxonomy; names themselves are general terminology."
     licenseUrl: ""
-    accessedAt: "2026-11-19"
-    modified: true
-    notes: "Definition, genres, design/development/production rationale, player experience, store references and a gameplay video reference researched on 2026-11-19. Sources consulted: Wikipedia 'Zone of control', WargameHQ 'Mechanics Monday - Zone of Control Basics', gdp3 'Zone of Control', Civilization V (CivFanatics), Total War: Warhammer III '2 Ways to Stop Enemies Running Away' (YouTube), and Steam store listings. No third-party text copied."
+    accessedAt: "2026-11-07"
+    modified: false
+    notes: "Definition, genres, design/development/production rationale, player experience, store references and a gameplay video reference researched on 2026-11-19 from Wikipedia, WargameHQ (Mechanics Monday), gdp3, CivFanatics, Steam/SteamRegistry listings and the game store pages listed in the references. No third-party text copied."
 ---
 
 ## Game genres
